@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container/ept"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/sbansal/.m2/repository/org/apache/commons/commons-lang3/3.5/commons-lang3-3.5.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.archivename" value="commons-lang3-3.4.jar"/>
+			<attribute name="maven.groupId" value="org.apache.commons"/>
+			<attribute name="maven.artifactId" value="commons-lang3"/>
+			<attribute name="maven.version" value="3.4"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lombok-1.16.16.jar"/>
+	<classpathentry kind="lib" path="commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="spring-context-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-core-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-web-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="spring-webmvc-5.0.1.RELEASE.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
