@@ -1,17 +1,25 @@
 package Test;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class DateTime {
+	private static final SimpleDateFormat ddmmmyyyyDateFormat = new SimpleDateFormat("dd MMM yyyy");
+	private static final SimpleDateFormat ddmmmyyyyDateFormat2 = new SimpleDateFormat("dd-MMM-yyyy");
+
 public static void main(String[] args) {
-	System.out.println(addOneDay("03/31/2018 00:00:00"));
+	try {
+		System.out.println(addOneDay("26-Feb-2018"));
+	} catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 }
 
-static public String addOneDay(String date) {
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
-	LocalDate tomorrow = LocalDate.parse(date, formatter).plusDays(1);
-    return tomorrow.format(formatter);
+static public String addOneDay(String date) throws ParseException {
+	return ddmmmyyyyDateFormat.format(ddmmmyyyyDateFormat2.parse(date));
   }
 
 }

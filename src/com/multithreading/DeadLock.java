@@ -1,4 +1,4 @@
-package com.miscellaneus;
+package com.multithreading;
 
 public class DeadLock {
 	public static Object Lock1 = new Object();

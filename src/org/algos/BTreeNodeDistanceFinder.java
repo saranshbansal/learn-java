@@ -42,21 +42,6 @@ public class BTreeNodeDistanceFinder {
 		return d1 + d2;
 	}
 
-	private static int findLevel(Node lca, int a, int lvl) {
-		if(lca == null) {
-			return -1;
-		}
-	    if(lca.key == a) {
-	    	return lvl;
-	    }
-	    
-		int left = findLevel(lca.left, a, lvl + 1);
-		if(left == -1) {			
-			return findLevel(lca.right, a, lvl + 1);
-		}
-		return left;
-	}
-
 	private static Node LCA(Node root, int i, int j) {
 		if(root == null) {
 			return null;
@@ -78,6 +63,20 @@ public class BTreeNodeDistanceFinder {
 		return LCA(root.right, i, j);
 	}
 	
+	private static int findLevel(Node lca, int a, int lvl) {
+		if(lca == null) {
+			return -1;
+		}
+		if(lca.key == a) {
+			return lvl;
+		}
+		
+		int left = findLevel(lca.left, a, lvl + 1);
+		if(left == -1) {			
+			return findLevel(lca.right, a, lvl + 1);
+		}
+		return left;
+	}
 	
 
 }
