@@ -1,4 +1,4 @@
-package com.algos;
+package com.datastructures;
 
 //Java program to demonstrate insert operation in binary search tree
 class BST {
