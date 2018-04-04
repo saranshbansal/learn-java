@@ -1,6 +1,6 @@
 package com.multithreading;
 
-public class Test {
+public class GuranteedThreadSafeOperationUsingSynchronisation {
 	public int count;
 
 	/**
@@ -40,11 +40,10 @@ public class Test {
 	}
 
 	public static void main(String[] args) {
-		Test t = new Test();
+		GuranteedThreadSafeOperationUsingSynchronisation t = new GuranteedThreadSafeOperationUsingSynchronisation();
 		try {
 			t.doWork();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

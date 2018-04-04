@@ -1,12 +1,14 @@
 package org.core.designpatterns;
 
 /**
- * Double locking thread safe Singleton Pattern (C)
+ * Double-check locking thread safe Singleton Pattern (C)
  *
  */
 public class SingletonPattern {
 
 	private static volatile SingletonPattern instance;
+	
+	// final fields
 
 	private SingletonPattern() {
 	}

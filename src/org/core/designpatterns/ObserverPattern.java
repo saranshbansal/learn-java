@@ -26,8 +26,8 @@ import java.util.List;
  * For our observer pattern java program example, we would implement a simple
  * topic and observers can register to this topic. Whenever any new message will
  * be posted to the topic, all the registers observers will be notified and they
- * can consume the message. For simplicity forget about synchronization and use
- * of extra boolean variable to track changes.
+ * can consume the message. 
+ * PS: For simplicity forget about synchronization.
  * -------------------------------------------------------------------------------
  */
 
@@ -46,7 +46,7 @@ interface Subject {
 	public void notifyObservers();
 
 	// method to get updates from subject
-	public Object getUpdate();
+	public Object getUpdates();
 
 }
 
@@ -57,8 +57,8 @@ interface Subject {
  */
 interface Observer {
 
-	// method to update the observer, used by subject
-	public void update();
+	// method to check if any update is made on the subject
+	public void observeAndUpdate();
 
 	// attach with subject to observe
 	public void setSubject(Subject sub);
@@ -125,18 +125,18 @@ class MyPersonalFeed implements Subject {
 			this.changed = false;
 		}
 		for (Observer obj : observersLocal) {
-			obj.update();
+			obj.observeAndUpdate();
 		}
 
 	}
 
 	@Override
-	public Object getUpdate() {
+	public Object getUpdates() {
 		return this.message;
 	}
 
 	// method to post message to the home feed
-	public void newPost(String msg) {
+	public void addNewPost(String msg) {
 		System.out.println("New post added to feed:" + msg);
 		this.message = msg;
 		this.changed = true;
@@ -162,8 +162,8 @@ class MyFeedObserver implements Observer {
 	}
 
 	@Override
-	public void update() {
-		String msg = (String) homeFeed.getUpdate();
+	public void observeAndUpdate() {
+		String msg = (String) homeFeed.getUpdates();
 		if (msg == null) {
 			System.out.println(name + ":: No new post");
 		} else
@@ -203,10 +203,10 @@ public class ObserverPattern {
 		obj3.setSubject(feed);
 
 		// check if any update is available
-		obj1.update();
+		obj1.observeAndUpdate();
 
 		// now send a new post to home feed
-		feed.newPost("New Post - " + LocalDateTime.now());
+		feed.addNewPost("New Post - " + LocalDateTime.now());
 	}
 
 }

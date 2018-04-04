@@ -61,7 +61,7 @@ class CounterTerrorist implements Player {
 // Else creates a new player and returns it.
 class PlayerFactory {
 	/*
-	 * HashMap stores the reference to the object of Terrorist(TS) or
+	 * HashMap stores the reference to the object of Terrorist(T) or
 	 * CounterTerrorist(CT).
 	 */
 	private static HashMap<String, Player> hm = new HashMap<String, Player>();
