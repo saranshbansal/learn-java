@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * @author sbansal
- * Creational pattern demo
+ * Prototype pattern (C) demo
  */
 abstract class Color implements Cloneable {
 

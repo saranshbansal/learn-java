@@ -1,7 +1,7 @@
 package org.core.designpatterns;
 
 // A Java program to demonstrate working of
-// FlyWeight Pattern with example of Counter
+// FlyWeight Pattern (S) with example of Counter
 // Strike Game
 import java.util.Random;
 import java.util.HashMap;

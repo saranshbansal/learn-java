@@ -2,7 +2,7 @@ package org.core.designpatterns;
 
 /**
  * @author sbansal
- * Structural pattern demo
+ * Adapter design pattern (S)
  */
 interface MediaPlayer {
 	void play(String audioType, String fileName);

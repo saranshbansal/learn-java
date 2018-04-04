@@ -1,4 +1,4 @@
-package org.core.designpatterns;
+package com.miscellaneus;
 
 import java.util.ArrayList;
 import java.util.List;

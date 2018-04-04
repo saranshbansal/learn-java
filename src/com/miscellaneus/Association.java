@@ -1,4 +1,4 @@
-package org.core.designpatterns;
+package com.miscellaneus;
 
 /* 
  * http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Association-in-Java.png

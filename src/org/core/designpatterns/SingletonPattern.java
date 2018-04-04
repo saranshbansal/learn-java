@@ -1,5 +1,9 @@
 package org.core.designpatterns;
 
+/**
+ * Double locking thread safe Singleton Pattern (C)
+ *
+ */
 public class SingletonPattern {
 
 	private static volatile SingletonPattern instance;

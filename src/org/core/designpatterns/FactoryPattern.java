@@ -1,8 +1,7 @@
 package org.core.designpatterns;
 
 /**
- * @author sbansal
- * Creational pattern demo
+ * Factory pattern (C) demo
  */
 interface Country {
 	String getCountryName();
