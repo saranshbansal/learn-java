@@ -28,10 +28,10 @@ class QuickSort
          }
      }
 
-     // swap arr[i+1] and arr[high] (or pivot)
+     // swap arr[i+1] and pivot
      int temp = arr[i+1];
-     arr[i+1] = arr[high];
-     arr[high] = temp;
+     arr[i+1] = pivot;
+     pivot = temp;
 
      return i+1;
  }

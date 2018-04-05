@@ -33,12 +33,18 @@ public class BTreeNodeDistanceFinder {
 	}
 
 	// dist = d1 + d2 
-	private static int findDistance(Node root, int i, int j) {
+	/**
+	 * @param root
+	 * @param elm1
+	 * @param elm2
+	 * @return
+	 */
+	private static int findDistance(Node root, int elm1, int elm2) {
 		// find LCA (least common ancestor)
-		Node lca = LCA(root, i, j);
+		Node lca = LCA(root, elm1, elm2);
 		// find Level
-		int d1 = findLevel(lca, i, 0);
-		int d2 = findLevel(lca, j, 0);
+		int d1 = findLevel(lca, elm1, 0);
+		int d2 = findLevel(lca, elm2, 0);
 		return d1 + d2;
 	}
 
@@ -63,17 +69,17 @@ public class BTreeNodeDistanceFinder {
 		return LCA(root.right, i, j);
 	}
 	
-	private static int findLevel(Node lca, int a, int lvl) {
+	private static int findLevel(Node lca, int elmt, int lvl) {
 		if(lca == null) {
 			return -1;
 		}
-		if(lca.key == a) {
+		if(lca.key == elmt) {
 			return lvl;
 		}
 		
-		int left = findLevel(lca.left, a, lvl + 1);
+		int left = findLevel(lca.left, elmt, lvl + 1);
 		if(left == -1) {			
-			return findLevel(lca.right, a, lvl + 1);
+			return findLevel(lca.right, elmt, lvl + 1);
 		}
 		return left;
 	}
