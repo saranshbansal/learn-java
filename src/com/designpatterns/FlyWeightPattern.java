@@ -99,7 +99,7 @@ class PlayerFactory {
 }
 
 // Driver class
-public class FlyWeight {
+public class FlyWeightPattern {
 	// All player types and weopons (used by getRandPlayerType()
 	// and getRandWeapon()
 	private static String[] playerType = { "Terrorist", "CounterTerrorist" };
