@@ -1,4 +1,4 @@
-package com.algos;
+package com.algos.sort;
 
 /**
  * ALL Left n right elements are compared in each n passes where

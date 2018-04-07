@@ -1,4 +1,4 @@
-package com.algos;
+package com.algos.sort;
 
 /**
  * @author sbansal

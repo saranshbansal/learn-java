@@ -1,4 +1,4 @@
-package com.algos;
+package com.algos.sort;
 
 //Java program for implementation of QuickSort
 class QuickSort
