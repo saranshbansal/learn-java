@@ -25,8 +25,8 @@ import java.util.Arrays;
 
 /**
  * 
- * In computer science, merge sort (also commonly spelled mergesort) is an O(n
- * log n) comparison-based sorting algorithm. Most implementations produce a
+ * In computer science, merge sort (also commonly spelled mergesort) is an
+ * O(nlog n) comparison-based sorting algorithm. Most implementations produce a
  * stable sort, which means that the implementation preserves the input order of
  * equal elements in the sorted output. Mergesort is a divide and conquer
  * algorithm. Divide and conquer algorithms divide the original data into
@@ -53,20 +53,18 @@ import java.util.Arrays;
  * collection, Mergesort has successfully sorted the collection.
  * 
  * <When to use Merge Sort> 
- * 1. Merge sort is used when the data structure doesn’t
- * support random access, since it works with pure sequential access (forward
- * iterators, rather than random access iterators). It’s also widely used for
- * external sorting, where random access can be very, very expensive compared to
- * sequential access. For example, When sorting a file which doesn’t fit into
- * memory, you might break it into chunks which fit into memory, sort these
- * using independently, writing each out to a file, then merge sort the
- * generated files.
- * 
+ * 1. Merge sort is used when the data structure doesn’t support random access, 
+ * since it works with pure sequential access (forward iterators, rather than 
+ * random access iterators). It’s also widely used for external sorting, where 
+ * random access can be very, very expensive compared to sequential access. 
+ * For example, When sorting a file which doesn’t fit into memory, you might 
+ * break it into chunks which fit into memory, sort these chunks independently, 
+ * writing each out to a file, then merge sort the generated files.
  * 2. Also, you can use merge sort when you need a stable sort. It’s very important
  * feature of merge sort. 
  * 3. Mergesort is quicker when dealing with linked lists. This is because pointers 
- * can easily be changed when merging lists. It only
- * requires one pass (O(n)) through the list. 
+ * can easily be changed when merging lists. It only requires one pass (O(n)) through 
+ * the list. 
  * 4. If there is a lot of parallelization occurs then parallelizing Mergesort is 
  * simpler than other sort algorithms.
  * 
@@ -80,7 +78,7 @@ import java.util.Arrays;
 public class MergeSort {
 	public static void main(String[] args) {
 		// Unsorted array
-		Integer[] a = { 2, 6, 3, 5, 1 };
+		int[] a = { 2, 6, 3, 5, 1, 4 };
 
 		// Call merge sort
 		mergeSort(a);
@@ -93,16 +91,16 @@ public class MergeSort {
 	 * @param list
 	 * @return
 	 */
-	@SuppressWarnings("rawtypes")
-	public static Comparable[] mergeSort(Comparable[] list) {
+	public static int[] mergeSort(int[] list) {
 		// If list is empty; no need to do anything
 		if (list.length <= 1) {
 			return list;
 		}
 
-		// Split the array in half in two parts
-		Comparable[] first = new Comparable[list.length / 2];
-		Comparable[] second = new Comparable[list.length - first.length];
+		// Create 2 lists to hold 1st half and 2nd half of original list.
+		int[] first = new int[list.length / 2];
+		int[] second = new int[list.length - first.length];
+		// Split the array in half and populate above lists.
 		System.arraycopy(list, 0, first, 0, first.length);
 		System.arraycopy(list, first.length, second, 0, second.length);
 
@@ -110,7 +108,7 @@ public class MergeSort {
 		mergeSort(first);
 		mergeSort(second);
 
-		// Merge both halves together, overwriting to original array
+		// Merge both halves together, overwriting original array
 		merge(first, second, list);
 		return list;
 	}
@@ -120,8 +118,7 @@ public class MergeSort {
 	 * @param second
 	 * @param result
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static void merge(Comparable[] first, Comparable[] second, Comparable[] result) {
+	private static void merge(int[] first, int[] second, int[] result) {
 		// Index Position in first array - starting with first element
 		int iFirst = 0;
 
@@ -134,7 +131,7 @@ public class MergeSort {
 		// Compare elements at iFirst and iSecond,
 		// and move smaller element at iMerged
 		while (iFirst < first.length && iSecond < second.length) {
-			if (first[iFirst].compareTo(second[iSecond]) < 0) {
+			if (first[iFirst] < second[iSecond]) {
 				result[iMerged] = first[iFirst];
 				iFirst++;
 			} else {

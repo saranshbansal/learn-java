@@ -8,17 +8,17 @@ public class SelectionSort {
 	public static void main(String[] args) {
 		int a[] = {64,25,12,22,11};
 		for (int i = 0; i < a.length; i++) {
-			int expected_min_idx = i;
-			int min_idx = i;
+			int temp_min_idx = i;
+			int true_min_idx = i;
 			for (int j = i + 1; j < a.length; j++) {
-				if (a[j] < a[min_idx]) {
-					min_idx = j;
+				if (a[j] < a[true_min_idx]) {
+					true_min_idx = j;
 				}
 			}
-			// swap expected and actual minimum elements
-			int temp = a[min_idx];
-			a[min_idx] = a[expected_min_idx];
-			a[expected_min_idx] = temp;
+			// swap temporary/initial and actual/true minimum elements
+			int temp = a[true_min_idx];
+			a[true_min_idx] = a[temp_min_idx];
+			a[temp_min_idx] = temp;
 		}
 
 		for (int k = 0; k < a.length; k++) {
