@@ -1,17 +1,7 @@
-package com.algos.miscellaneus;
+package com.datastructures.tree;
 
-public class BTreeNodeDistanceFinder {
+public class BSTreeFindNodeDistances {
 
-	static class Node {
-		Node left, right;
-		int key;
-		public Node(int key) {
-			super();
-			this.key = key;
-		}
-		
-	}
-	
 	public static void main(String[] args) {
 		// Build tree
 		Node tree = new Node(0);

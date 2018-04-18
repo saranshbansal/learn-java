@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.datastructures.map;
 
 import java.util.concurrent.ConcurrentHashMap;
 

@@ -13,7 +13,7 @@ public class InsertionSort {
 		System.out.println("Original array: " + Arrays.toString(a));
 		for (int i = 1; i < a.length; i++) {
 			int currentElement = a[i];
-			int j = i - 1;
+			int j = i - 1; // loop over all elements at index before current element's index
 			System.out.println("current element {" + currentElement + "} comparison with {" + a[j] + "}");
 			while (j >= 0 && currentElement < a[j]) {
 				// tricky part! shift left n right elements as current element (being smaller)

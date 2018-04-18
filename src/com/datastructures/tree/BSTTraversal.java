@@ -1,4 +1,4 @@
-package com.datastructures;
+package com.datastructures.tree;
 
 /**
  * @author sbansal
@@ -6,23 +6,13 @@ package com.datastructures;
  * Java program to demonstrate insert operation in binary search tree
  */
 
-class Node {
-	int key;
-	Node left, right;
-	
-	public Node(int item) {
-		key = item;
-		left = right = null;
-	}
-}
-
-public class BST {
+public class BSTTraversal {
 
 	// Root of BST
 	Node root;
 
 	// Constructor
-	BST() { 
+	BSTTraversal() { 
 		root = null; 
 	}
 
@@ -93,7 +83,7 @@ public class BST {
 	}
 
 	public static void main(String[] args) {
-		BST tree = new BST();
+		BSTTraversal tree = new BSTTraversal();
 
 		/* Let us create following BST
 		           50
