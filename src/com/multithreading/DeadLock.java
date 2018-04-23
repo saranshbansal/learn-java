@@ -9,7 +9,6 @@ public class DeadLock {
 		ThreadDemo2 T2 = new ThreadDemo2();
 		T1.start();
 		T2.start();
-		
 	}
 
 	private static class ThreadDemo1 extends Thread {
