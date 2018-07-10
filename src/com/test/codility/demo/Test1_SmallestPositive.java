@@ -50,10 +50,12 @@ public class Test1_SmallestPositive {
 
 	private static int findSmallestPositive(int[] arr) {
 		for (int i = 0; i < arr.length; i++) {
-			if ((i < arr.length - 1) && (arr[i + 1] - arr[i] > 1) && (arr[i] + 1 > 0)) {
+			// No next smallest missing element found within array. Return the next highest integer.
+			if (i == arr.length - 1) {
 				return arr[i] + 1;
 			}
-			if (i == arr.length - 1) {
+			// Otherwise, continue.
+			if ((i < arr.length - 1) && (arr[i + 1] - arr[i] > 1) && (arr[i] + 1 > 0)) {
 				return arr[i] + 1;
 			}
 		}
