@@ -10,6 +10,7 @@ public class SelectionSort {
 		for (int i = 0; i < a.length; i++) {
 			int temp_min_idx = i;
 			int true_min_idx = i;
+			// Iterate all elements after ith elements to find the smallest element and put it on ith position.
 			for (int j = i + 1; j < a.length; j++) {
 				if (a[j] < a[true_min_idx]) {
 					true_min_idx = j;
