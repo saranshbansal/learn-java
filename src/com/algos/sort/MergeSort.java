@@ -53,14 +53,14 @@ import java.util.Arrays;
  * collection, Mergesort has successfully sorted the collection.
  * 
  * <When to use Merge Sort> 
- * 1. Merge sort is used when the data structure doesn’t support random access, 
+ * 1. Merge sort is used when the data structure doesnï¿½t support random access, 
  * since it works with pure sequential access (forward iterators, rather than 
- * random access iterators). It’s also widely used for external sorting, where 
+ * random access iterators). Itï¿½s also widely used for external sorting, where 
  * random access can be very, very expensive compared to sequential access. 
- * For example, When sorting a file which doesn’t fit into memory, you might 
+ * For example, When sorting a file which doesnï¿½t fit into memory, you might 
  * break it into chunks which fit into memory, sort these chunks independently, 
  * writing each out to a file, then merge sort the generated files.
- * 2. Also, you can use merge sort when you need a stable sort. It’s very important
+ * 2. Also, you can use merge sort when you need a stable sort. Itï¿½s very important
  * feature of merge sort. 
  * 3. Mergesort is quicker when dealing with linked lists. This is because pointers 
  * can easily be changed when merging lists. It only requires one pass (O(n)) through 
@@ -100,6 +100,7 @@ public class MergeSort {
 		// Create 2 lists to hold 1st half and 2nd half of original list.
 		int[] first = new int[list.length / 2];
 		int[] second = new int[list.length - first.length];
+
 		// Split the array in half and populate above lists.
 		System.arraycopy(list, 0, first, 0, first.length);
 		System.arraycopy(list, first.length, second, 0, second.length);

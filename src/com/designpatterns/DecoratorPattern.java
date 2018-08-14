@@ -4,11 +4,11 @@ package com.designpatterns;
  * Decorator design pattern (S)
  * 
  * Decorator design pattern is used to enhance the functionality of a particular
- * object at run-time or dynamically. · At the same time other instance of same
+ * object at run-time or dynamically. ï¿½ At the same time other instance of same
  * class will not be affected by this so individual object gets the new
- * behavior. · Basically we wrap the original object through decorator object. ·
+ * behavior. ï¿½ Basically we wrap the original object through decorator object. ï¿½
  * Decorator design pattern is based on abstract classes and we derive concrete
- * implementation from those classes, · It’s a structural design pattern and
+ * implementation from those classes, ï¿½ Itï¿½s a structural design pattern and
  * most widely used.
  * 
  * Use When Object responsibilities and behaviors should be dynamically
@@ -29,106 +29,65 @@ package com.designpatterns;
 public class DecoratorPattern {
 	public static void main(String[] args) {
 
-		// without adding decorators
-		Currency curr = new Dollar();
-		System.out.println(curr.getDescription() + ". " + curr.cost(2.0));
+		// simple troll
+		Troll troll = new SimpleTroll();
+		troll.attack(); // The troll tries to grab you!
+		troll.fleeBattle(); // The troll shrieks in horror and runs away!
 
-		// adding decorators
-		Currency curr2 = new USDDecorator(new Dollar());
-		System.out.println(curr2.getDescription() + " dollar. " + curr2.cost(64.0));
-
-		Currency curr3 = new SGDDecorator(new Dollar());
-		System.out.println(curr3.getDescription() + " dollar. " + curr3.cost(44.0));
+		// change the behavior of the simple troll by adding a decorator
+		troll = new ClubbedTroll(troll);
+		troll.attack(); // The troll tries to grab you! The troll swings at you with a club!
+		troll.fleeBattle(); // The troll shrieks in horror and runs away!
 	}
 }
 
-abstract class Currency {
-	String description = "Unknown currency";
+interface Troll {
+	void attack();
 
-	public String getDescription() {
-		return description;
-	}
+	int getAttackPower();
 
-	public abstract double cost(double value);
-
+	void fleeBattle();
 }
 
-// Concrete Component
-class Dollar extends Currency {
-	double value;
+class SimpleTroll implements Troll {
 
-	public Dollar() {
-		description = "Default Dollar";
-	}
-
-	public double cost(double v) {
-		value = v;
-
-		return value;
-
-	}
-
-}
-
-/*class Rupee extends Currency {
-	double value;
-
-	public Rupee() {
-		description = "indian rupees";
-	}
-
-	public double cost(double v) {
-		value = v;
-		return value;
-	}
-
-}*/
-
-
-
-// Decorator
-abstract class Decorator extends Currency {
-
-	public abstract String getDescription();
-
-}
-
-// Concrete Decorator
-class USDDecorator extends Decorator {
-
-	Currency currency;
-
-	public USDDecorator(Currency currency) {
-		this.currency = currency;
-	}
-
-	public String getDescription() {
-		return "USD";
+	@Override
+	public void attack() {
+		System.out.println("The troll tries to grab you!");
 	}
 
 	@Override
-	public double cost(double value) {
-		return currency.cost(value);
-	}
-
-}
-
-// Another Concrete Decorator
-
-class SGDDecorator extends Decorator {
-	Currency currency;
-
-	public SGDDecorator(Currency currency) {
-		this.currency = currency;
-	}
-
-	public String getDescription() {
-		return "SGD";
+	public int getAttackPower() {
+		return 10;
 	}
 
 	@Override
-	public double cost(double value) {
-		return currency.cost(value);
+	public void fleeBattle() {
+		System.out.println("The troll shrieks in horror and runs away!");
+	}
+}
+
+class ClubbedTroll implements Troll {
+
+	private Troll decorated;
+
+	public ClubbedTroll(Troll decorated) {
+		this.decorated = decorated;
 	}
 
+	@Override
+	public void attack() {
+		decorated.attack();
+		System.out.println("The troll swings at you with a club!");
+	}
+
+	@Override
+	public int getAttackPower() {
+		return decorated.getAttackPower() + 10;
+	}
+
+	@Override
+	public void fleeBattle() {
+		decorated.fleeBattle();
+	}
 }
