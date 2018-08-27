@@ -1,4 +1,4 @@
-package com.oops.learn;
+package com.utilities;
 
 import java.io.BufferedReader;
 import java.io.IOException;
