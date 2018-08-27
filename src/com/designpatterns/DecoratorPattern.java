@@ -26,68 +26,91 @@ package com.designpatterns;
  * remain unchanged until a runtime decision is made to wrap the message with
  * additional information.
  */
-public class DecoratorPattern {
-	public static void main(String[] args) {
+public class DecoratorPattern
+{
+    public static void main(String[] args)
+    {
 
-		// simple troll
-		Troll troll = new SimpleTroll();
-		troll.attack(); // The troll tries to grab you!
-		troll.fleeBattle(); // The troll shrieks in horror and runs away!
+        // simple troll
+        Troll troll = new SimpleTroll();
+        troll.attack(); // The troll tries to grab you!
+        troll.fleeBattle(); // The troll shrieks in horror and runs away!
 
-		// change the behavior of the simple troll by adding a decorator
-		troll = new ClubbedTroll(troll);
-		troll.attack(); // The troll tries to grab you! The troll swings at you with a club!
-		troll.fleeBattle(); // The troll shrieks in horror and runs away!
-	}
+        // change the behavior of the simple troll by adding a decorator
+        troll = new ClubbedTroll(troll);
+        troll.attack(); // The troll tries to grab you! The troll swings at you with a club!
+        troll.fleeBattle(); // The troll shrieks in horror and runs away!
+    }
 }
 
-interface Troll {
-	void attack();
 
-	int getAttackPower();
+interface Troll
+{
+    void attack();
 
-	void fleeBattle();
+
+    int getAttackPower();
+
+
+    void fleeBattle();
 }
 
-class SimpleTroll implements Troll {
 
-	@Override
-	public void attack() {
-		System.out.println("The troll tries to grab you!");
-	}
+class SimpleTroll implements Troll
+{
 
-	@Override
-	public int getAttackPower() {
-		return 10;
-	}
+    @Override
+    public void attack()
+    {
+        System.out.println("The troll tries to grab you!");
+    }
 
-	@Override
-	public void fleeBattle() {
-		System.out.println("The troll shrieks in horror and runs away!");
-	}
+
+    @Override
+    public int getAttackPower()
+    {
+        return 10;
+    }
+
+
+    @Override
+    public void fleeBattle()
+    {
+        System.out.println("The troll shrieks in horror and runs away!");
+    }
 }
 
-class ClubbedTroll implements Troll {
 
-	private Troll decorated;
+class ClubbedTroll implements Troll
+{
 
-	public ClubbedTroll(Troll decorated) {
-		this.decorated = decorated;
-	}
+    private Troll decorated;
 
-	@Override
-	public void attack() {
-		decorated.attack();
-		System.out.println("The troll swings at you with a club!");
-	}
 
-	@Override
-	public int getAttackPower() {
-		return decorated.getAttackPower() + 10;
-	}
+    public ClubbedTroll(Troll decorated)
+    {
+        this.decorated = decorated;
+    }
 
-	@Override
-	public void fleeBattle() {
-		decorated.fleeBattle();
-	}
+
+    @Override
+    public void attack()
+    {
+        decorated.attack();
+        System.out.println("The troll swings at you with a club!");
+    }
+
+
+    @Override
+    public int getAttackPower()
+    {
+        return decorated.getAttackPower() + 10;
+    }
+
+
+    @Override
+    public void fleeBattle()
+    {
+        decorated.fleeBattle();
+    }
 }
