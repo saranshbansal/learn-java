@@ -3,8 +3,6 @@
  */
 package com.scratchpad;
 
-import org.apache.commons.lang3.ObjectUtils;
-
 /**
  * @author sbansal
  *

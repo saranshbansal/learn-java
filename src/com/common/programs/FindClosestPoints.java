@@ -1,8 +1,8 @@
-package com.scratchpad;
+package com.common.programs;
 
 import java.util.Arrays;
 
-public class Test4
+public class FindClosestPoints
 {
 
     public static void main(String[] args)

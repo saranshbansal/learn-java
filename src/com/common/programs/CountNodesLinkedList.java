@@ -1,6 +1,6 @@
-package com.scratchpad;
+package com.common.programs;
 
-public class Test3
+public class CountNodesLinkedList
 {
 
     static class Node
