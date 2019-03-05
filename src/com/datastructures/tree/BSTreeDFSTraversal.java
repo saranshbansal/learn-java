@@ -3,10 +3,10 @@ package com.datastructures.tree;
 /**
  * @author sbansal
  * 
- * Java program to demonstrate insert operation in binary search tree
+ * Java program to demonstrate DFS traversal operations in binary search tree
  */
 
-public class BSTTraversal
+public class BSTreeDFSTraversal
 {
 
     // Root of BST
@@ -14,7 +14,7 @@ public class BSTTraversal
 
 
     // Constructor
-    BSTTraversal()
+    BSTreeDFSTraversal()
     {
         root = null;
     }
@@ -108,7 +108,7 @@ public class BSTTraversal
 
     public static void main(String[] args)
     {
-        BSTTraversal tree = new BSTTraversal();
+        BSTreeDFSTraversal tree = new BSTreeDFSTraversal();
 
         /* Let us create following BST
                    50
@@ -116,16 +116,26 @@ public class BSTTraversal
                30      70
               /  \    /  \
             20   40  60   80 
+            /
+           10
         */
         tree.insert(50);
         tree.insert(30);
         tree.insert(20);
+        tree.insert(10);        
         tree.insert(40);
         tree.insert(70);
         tree.insert(60);
         tree.insert(80);
 
+        // print preorder traversal of the BST
+        System.out.println("PreOrder(DLR) Traversal :: ");
+        tree.preorder();
         // print inorder traversal of the BST
+        System.out.println("Inorder(LDR) Traversal :: ");
         tree.inorder();
+        // print inorder traversal of the BST
+        System.out.println("PostOrder Traversal(LRD) :: ");
+        tree.postorder();
     }
 }
