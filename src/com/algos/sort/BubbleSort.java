@@ -1,8 +1,7 @@
 package com.algos.sort;
 
 /**
- * ALL Left n right elements are compared in each n passes where
- * n is length of array.
+ * Comparison based algorithm: Each pair of adjacent elements are compared in each pass until array is sorted. Ο(n2)
  */
 public class BubbleSort
 {

@@ -26,7 +26,8 @@ import java.util.Arrays;
 /**
  * 
  * In computer science, merge sort (also commonly spelled mergesort) is an
- * O(nlog n) comparison-based sorting algorithm. Most implementations produce a
+ * O(nlog n) and it needs Ο(n) auxiliary space. divide n conquer sorting algorithm.
+ * Most implementations produce a
  * stable sort, which means that the implementation preserves the input order of
  * equal elements in the sorted output. Mergesort is a divide and conquer
  * algorithm. Divide and conquer algorithms divide the original data into

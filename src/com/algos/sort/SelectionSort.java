@@ -2,7 +2,8 @@ package com.algos.sort;
 
 /**
  * @author sbansal
- * Select first element as minimum and iterate through the length to find actual minimum value position then swap with first.
+ * in-place sorting technique: Select first element as minimum and iterate through the length to find 
+ * actual minimum value position then swap with first.
  */
 public class SelectionSort
 {
