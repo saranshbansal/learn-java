@@ -6,6 +6,21 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Map.Entry;
 
+// Class to store all Nodes with their normalized levels.
+class NodePack
+{
+    Node node;
+    int lvl;
+
+
+    NodePack(Node node, int lvl)
+    {
+        this.node = node;
+        this.lvl = lvl;
+    }
+}
+
+
 //Java program to print top view of binary tree
 public class TreeTopView
 {
@@ -21,52 +36,42 @@ public class TreeTopView
 
     // function should print the topView of 
     // the binary tree 
-    private void TopView(Node root)
+    private void topView(Node root)
     {
-        class QueueObj
-        {
-            Node node;
-            int hd;
-
-
-            QueueObj(Node node, int hd)
-            {
-                this.node = node;
-                this.hd = hd;
-            }
-        }
-        Queue<QueueObj> q = new LinkedList<QueueObj>();
+        Queue<NodePack> q = new LinkedList<>();
+        // map to compare levels and store output
         Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
 
         if (root == null)
         {
             return;
         }
-        else
-        {
-            q.add(new QueueObj(root, 0));
-        }
+        // Add root node to queue (if any) as it obviously comes in top view
+        q.add(new NodePack(root, 0));
 
         System.out.println("The top view of the tree is : ");
 
         // count function returns 1 if the container 
         // contains an element whose key is equivalent 
-        // to hd, or returns zero otherwise. 
+        // to lvl, or returns zero otherwise. 
         while (!q.isEmpty())
         {
-            QueueObj tmpNode = q.poll();
-            if (!topViewMap.containsKey(tmpNode.hd))
+            // remove the nodepack from queue.
+            NodePack thisNodePack = q.poll();
+
+            // store nodes at unique normalized levels to our top view map.
+            if (!topViewMap.containsKey(thisNodePack.lvl))
             {
-                topViewMap.put(tmpNode.hd, tmpNode.node);
+                topViewMap.put(thisNodePack.lvl, thisNodePack.node);
             }
 
-            if (tmpNode.node.left != null)
+            if (thisNodePack.node.left != null)
             {
-                q.add(new QueueObj(tmpNode.node.left, tmpNode.hd - 1));
+                q.add(new NodePack(thisNodePack.node.left, thisNodePack.lvl - 1));
             }
-            if (tmpNode.node.right != null)
+            if (thisNodePack.node.right != null)
             {
-                q.add(new QueueObj(tmpNode.node.right, tmpNode.hd + 1));
+                q.add(new NodePack(thisNodePack.node.right, thisNodePack.lvl + 1));
             }
 
         }
@@ -98,7 +103,7 @@ public class TreeTopView
         tree.root.left.right.right = new Node(5);
         tree.root.left.right.right.right = new Node(6);
         System.out.println("Following are nodes in top view of Binary Tree");
-        tree.TopView(tree.root);
+        tree.topView(tree.root);
     }
 
 }

@@ -15,13 +15,11 @@ public class TreeCountNodes
         tree.right.right = new Node(6);
         tree.right.left.left = new Node(7);
         tree.right.left.right = new Node(8);
-        tree.left = new Node(1);
-        tree.left.right = new Node(2);
-        tree.left.right.right = new Node(3);
-        tree.left.right.right.right = new Node(4);
-        tree.left.right.right.right.right = new Node(5);
-        tree.left.right.right.right.right.right = new Node(6);
-        tree.left.right.right.right.right.right.right = new Node(7);
+        tree.left.right.right = new Node(9);
+        tree.left.right.right.right = new Node(10);
+        tree.left.right.right.right.right = new Node(11);
+        tree.left.right.right.right.right.right = new Node(12);
+        tree.left.right.right.right.right.right.right = new Node(13);
 
         System.out.println("Total number of nodes: " + countNodes(tree));
     }

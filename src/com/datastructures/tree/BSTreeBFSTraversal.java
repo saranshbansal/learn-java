@@ -28,20 +28,12 @@ class BSTreeBFSTraversal
     down to the farthest leaf node.*/
     int height(Node root)
     {
-        if (root == null)
+        if (null == root)
             return 0;
+        if (root.left == null && root.right == null)
+            return 1;
         else
-        {
-            /* compute height of each subtree */
-            int lheight = height(root.left);
-            int rheight = height(root.right);
-
-            /* use the larger one */
-            if (lheight > rheight)
-                return (lheight + 1);
-            else
-                return (rheight + 1);
-        }
+            return Math.max(height(root.left), height(root.right)) + 1;
     }
 
 
@@ -69,6 +61,7 @@ class BSTreeBFSTraversal
         tree.root.right = new Node(3);
         tree.root.left.left = new Node(4);
         tree.root.left.right = new Node(5);
+        tree.root.left.right.left = new Node(6);
 
         System.out.println("Level order traversal of binary tree is ");
         tree.printLevelOrder();

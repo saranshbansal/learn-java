@@ -1,52 +1,36 @@
 package com.datastructures.tree;
 
-//class to access maximum level by reference 
-class MaxLevel
-{
-
-    int maxLevel;
-}
-
-
 //Java program to print right view of binary tree
 public class TreeRightView
 {
     Node root;
-    MaxLevel max = new MaxLevel();
+    static int max_level = 0;
 
 
-    // Recursive function to print right view of a binary tree. 
-    void rightViewUtil(Node node, int level, MaxLevel maxLevel)
+    // recursive function to print right view 
+    void rightViewUtil(Node node, int level)
     {
-
         // Base Case 
         if (node == null)
             return;
 
-        // If this is the last Node of its level 
-        if (maxLevel.maxLevel < level)
+        // If this is the first node of its level 
+        if (max_level < level)
         {
-            System.out.print(node.key + " ");
-            maxLevel.maxLevel = level;
+            System.out.print(" " + node.key);
+            max_level = level;
         }
 
-        // Recur for right subtree first, then left subtree 
-        rightViewUtil(node.right, level + 1, maxLevel);
-        rightViewUtil(node.left, level + 1, maxLevel);
-    }
-
-
-    void rightView()
-    {
-        rightView(root);
+        // Recur for left and right subtrees 
+        rightViewUtil(node.right, level + 1);
+        rightViewUtil(node.left, level + 1);
     }
 
 
     // A wrapper over rightViewUtil() 
-    void rightView(Node node)
+    void rightView()
     {
-
-        rightViewUtil(node, 1, max);
+        rightViewUtil(root, 1);
     }
 
 

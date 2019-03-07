@@ -1,7 +1,6 @@
 package com.common.programs;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class BalanceBraces
 {
@@ -69,62 +68,46 @@ public class BalanceBraces
 
 
     // Complete the braces function below.
-    static String[] braces(String[] values)
+    static boolean braces(String value)
     {
-        String[] result = new String[values.length];
         Stack st = new Stack();
-        int index = 0;
-        for (String value : values)
+        for (int i = 0; i < value.length(); i++)
         {
-            for (int i = 0; i < value.length(); i++)
+            if (value.charAt(i) == '(' || value.charAt(i) == '{' || value.charAt(i) == '[')
             {
-                if (value.charAt(i) == '(' || value.charAt(i) == '{' || value.charAt(i) == '[')
-                {
-                    st.push(value.charAt(i));
-                }
+                st.push(value.charAt(i));
+            }
 
-                if (value.charAt(i) == ')' || value.charAt(i) == '}' || value.charAt(i) == ']')
+            if (value.charAt(i) == ')' || value.charAt(i) == '}' || value.charAt(i) == ']')
+            {
+                if (st.isEmpty())
                 {
-                    if (st.isEmpty())
-                    {
-                        result[index] = "NO";
-                    }
-                    else if (!isMatching(st.pop(), value.charAt(i)))
-                    {
-                        result[index] = "NO";
-                    }
+                    return false;
+                }
+                else if (!isMatching(st.pop(), value.charAt(i)))
+                {
+                    return false;
                 }
             }
-
-            if (st.isEmpty())
-            {
-                result[index] = "YES";
-            }
-            else
-            {
-                result[index] = "NO";
-            }
-            index++;
-
         }
-        return result;
+
+        if (st.isEmpty())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 
     public static void main(String[] args) throws IOException
     {
 
-        int valuesCount = 10;
+        String input = "{}{}([]0)";
 
-        String[] values = new String[valuesCount];
-
-        for (int i = 0; i < valuesCount; i++)
-        {
-            values[i] = "{}{}()"; // manipulate
-        }
-
-        String[] res = braces(values);
-        Arrays.stream(res).forEach(obj -> System.out.println(obj));
+        System.out.println(braces(input));
     }
 
 }

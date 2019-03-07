@@ -8,10 +8,10 @@ import java.util.Stack;
 class BinarySearchTreeValidator
 {
 
-    boolean canRepresentBST(int pre[], int n)
+    boolean canRepresentBST(int arr[], int n)
     {
         // Create an empty stack
-        Stack<Integer> s = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<Integer>();
 
         // Initialize current root as minimum possible
         // value
@@ -22,24 +22,24 @@ class BinarySearchTreeValidator
         {
             // If we find a node who is on right side
             // and smaller than root, return false
-            if (pre[i] < root)
+            if (arr[i] < root)
             {
                 return false;
             }
 
-            // If pre[i] is in right subtree of stack top,
-            // Keep removing items smaller than pre[i]
+            // If arr[i] is in right subtree of stack top,
+            // Keep removing items smaller than arr[i]
             // and make the last removed item as new
             // root.
-            while (!s.empty() && s.peek() < pre[i])
+            while (!stack.empty() && stack.peek() < arr[i])
             {
-                root = s.peek();
-                s.pop();
+                root = stack.peek();
+                stack.pop();
             }
 
             // At this point either stack is empty or
-            // pre[i] is smaller than root, push pre[i]
-            s.push(pre[i]);
+            // arr[i] is smaller than root, push arr[i]
+            stack.push(arr[i]);
         }
         return true;
     }
@@ -48,9 +48,9 @@ class BinarySearchTreeValidator
     public static void main(String args[])
     {
         BinarySearchTreeValidator bst = new BinarySearchTreeValidator();
-        int[] pre1 = new int[] {40, 30, 35, 80, 100};
-        int n = pre1.length;
-        if (bst.canRepresentBST(pre1, n) == true)
+        int[] arr1 = new int[] {40, 30, 35, 80, 100};
+        int n = arr1.length;
+        if (bst.canRepresentBST(arr1, n) == true)
         {
             System.out.println("true");
         }
@@ -58,8 +58,8 @@ class BinarySearchTreeValidator
         {
             System.out.println("false");
         }
-        int[] pre2 = new int[] {40, 30, 35, 20, 80, 100};
-        if (bst.canRepresentBST(pre2, n) == true)
+        int[] arr2 = new int[] {40, 30, 35, 20, 80, 100};
+        if (bst.canRepresentBST(arr2, n) == true)
         {
             System.out.println("true");
         }

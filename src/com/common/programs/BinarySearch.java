@@ -1,5 +1,7 @@
 package com.common.programs;
 
+import java.util.Arrays;
+
 public class BinarySearch
 {
     int ar[];
@@ -37,6 +39,7 @@ public class BinarySearch
     public static void main(String[] args)
     {
         int[] ar = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        Arrays.sort(ar);
         BinarySearch bs = new BinarySearch(ar);
         int pos = bs.find(0, ar.length - 1, 9);
         if (pos < 0)

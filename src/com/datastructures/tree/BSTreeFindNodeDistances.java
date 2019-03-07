@@ -16,12 +16,12 @@ public class BSTreeFindNodeDistances
         tree.right.left.left = new Node(7);
         tree.right.left.right = new Node(8);
 
-        System.out.println("Distance between two nodes: " + findDistance(tree, 3, 4));
-        System.out.println("Distance between two nodes: " + findDistance(tree, 1, 4));
-        System.out.println("Distance between two nodes: " + findDistance(tree, 7, 4));
-        System.out.println("Distance between two nodes: " + findDistance(tree, 6, 4));
-        System.out.println("Distance between two nodes: " + findDistance(tree, 3, 8));
-        System.out.println("Distance between two nodes: " + findDistance(tree, 0, 4));
+        System.out.println("Distance between two nodes (3,4): " + findDistance(tree, 3, 4));
+        System.out.println("Distance between two nodes (1,4): " + findDistance(tree, 1, 4));
+        System.out.println("Distance between two nodes (7,4): " + findDistance(tree, 7, 4));
+        System.out.println("Distance between two nodes (6,4): " + findDistance(tree, 6, 4));
+        System.out.println("Distance between two nodes (3,8): " + findDistance(tree, 3, 8));
+        System.out.println("Distance between two nodes (0,4): " + findDistance(tree, 0, 4));
     }
 
 

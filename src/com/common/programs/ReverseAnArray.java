@@ -16,16 +16,14 @@ public class ReverseAnArray
         }
 
         // for print purpose.
-        Arrays.stream(arr).forEach(obj -> {
-            System.out.println(obj);
-        });
+        Arrays.stream(arr).forEach(obj -> System.out.println(obj));
     }
 
 
     public static void main(String[] args)
     {
         ReverseAnArray reverseAnArray = new ReverseAnArray();
-        int arr[] = {1, 2, 3, 4, 5};
+        int arr[] = {1, 3, 2, 3, 4, 5};
         reverseAnArray.reverse(arr);
     }
 }
