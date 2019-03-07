@@ -30,7 +30,6 @@ public class StockProblem
 
     private void findMaxProfitPairs(int[] ar, int n)
     {
-        // TODO Auto-generated method stub
         // You will buy on Day 0 and sell on Day 3
         // You will buy again on Day 4 and sell on Day 6
         List<Pair> list = new ArrayList<>();
