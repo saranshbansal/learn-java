@@ -14,8 +14,8 @@ import java.util.Arrays;
  *         that, given an array A of N integers, returns the smallest positive
  *         integer (greater than 0) that does not occur in A.
  * 
- *         For example, given A = [1, 3, 6, 4, 1, 2], the function should return
- *         5.
+ *         For example, 
+ *         Given A = [1, 3, 6, 4, 1, 2], the function should return 5.
  * 
  *         Given A = [1, 2, 3], the function should return 4.
  * 
@@ -28,16 +28,7 @@ import java.util.Arrays;
  * 
  *         expected worst-case time complexity is O(N); expected worst-case
  *         space complexity is O(N), beyond input storage (not counting the
- *         storage required for input arguments). Copyright 2009–2018 by
- *         Codility Limited. All Rights Reserved. Unauthorized copying,
- *         publication or disclosure prohibited. Solution Solution Java SE 8
- * 
- *         Run Tests
- * 
- *         Submit
- * 
- * 
- *         You will see save status here Test Output Test Output
+ *         storage required for input arguments).
  * 
  */
 public class SmallestPositive

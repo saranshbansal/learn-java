@@ -71,20 +71,20 @@ public class BalanceBraces
     static boolean braces(String value)
     {
         Stack st = new Stack();
-        for (int i = 0; i < value.length(); i++)
+        for (char c : value.toCharArray())
         {
-            if (value.charAt(i) == '(' || value.charAt(i) == '{' || value.charAt(i) == '[')
+            if (c == '(' || c == '{' || c == '[')
             {
-                st.push(value.charAt(i));
+                st.push(c);
             }
 
-            if (value.charAt(i) == ')' || value.charAt(i) == '}' || value.charAt(i) == ']')
+            if (c == ')' || c == '}' || c == ']')
             {
                 if (st.isEmpty())
                 {
                     return false;
                 }
-                else if (!isMatching(st.pop(), value.charAt(i)))
+                else if (!isMatching(st.pop(), c))
                 {
                     return false;
                 }

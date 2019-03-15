@@ -4,7 +4,9 @@ import java.util.Arrays;
 
 /**
  * Imagine sorting through a deck of cards. In each pass, the current card is
- * compared to all previous cards.
+ * compared to all previous cards. O(n2)
+ * The maximum number of comparisons for an insertion sort is the sum of the first integers. Again, this is O ( n 2 ) . 
+ * However, in the best case, only one comparison needs to be done on each pass.
  * 
  */
 public class InsertionSort

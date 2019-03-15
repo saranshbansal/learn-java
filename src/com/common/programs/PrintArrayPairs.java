@@ -34,18 +34,18 @@ public class PrintArrayPairs
             if (sum == k)
             {
                 System.out.printf("(%d, %d) %n", numbers[left], numbers[right]);
-                left = left + 1;
-                right = right - 1;
+                left++;
+                right--;
 
             }
             else if (sum < k)
             {
-                left = left + 1;
+                left++;
 
             }
             else if (sum > k)
             {
-                right = right - 1;
+                right--;
             }
         }
 
