@@ -5,17 +5,17 @@ import java.util.HashMap;
 /*
  * A Java program to find all symmetric pairs in a given array of pairs:
  * 
- * Two pairs (a, b) and (c, d) are said to be symmetric if c is equal to b and a is equal to d. 
+ * Two pairs (a, b) and (c, d) are said to be symmetric if b is equal to d and a is equal to d. 
  * For example (10, 20) and (20, 10) are symmetric. Given an array of pairs find all symmetric pairs in it.
  */
-class SymmetricPairs
+class SymmetricPairsIn2DArray
 {
 
     // Print all pairs that have a symmetric counterpart 
     static void findSymPairs(int arr[][])
     {
         // Creates an empty hashMap hM 
-        HashMap<Integer, Integer> hM = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
 
         // Traverse through the given array 
         for (int i = 0; i < arr.length; i++)
@@ -25,7 +25,7 @@ class SymmetricPairs
             int sec = arr[i][1];
 
             // Look for second element of this pair in hash 
-            Integer val = hM.get(sec);
+            Integer val = hm.get(sec);
 
             // If found and value in hash matches with first 
             // element of this pair, we found symmetry 
@@ -33,7 +33,7 @@ class SymmetricPairs
                 System.out.println("(" + sec + ", " + first + ")");
 
             else // Else put sec element of this pair in hash 
-                hM.put(first, sec);
+                hm.put(first, sec);
         }
     }
 

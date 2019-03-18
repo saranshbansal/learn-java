@@ -3,7 +3,7 @@ package com.common.programs;
 import java.util.Arrays;
 
 // Find all Pairs in Array of Integers Whose sum is Equal to a Given Number - 
-public class PrintArrayPairs
+public class PrintArrayPairSum
 {
 
     public static void main(String args[])
