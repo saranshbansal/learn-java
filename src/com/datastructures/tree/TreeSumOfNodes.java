@@ -27,9 +27,8 @@ public class TreeSumOfNodes
         if (null == tree)
             return 0;
         // trick: remember how tree traversal works
-        sum += tree.key;
-        countTotalSum(tree.left);
-        countTotalSum(tree.right);
-        return sum;
+        return tree.key
+            + countTotalSum(tree.left) +
+            countTotalSum(tree.right);
     }
 }
