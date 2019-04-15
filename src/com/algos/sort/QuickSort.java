@@ -9,7 +9,7 @@ then the element is said to be in 'sorted' position.
 
 Algo:
 // partition
-Partition(l,h) {
+partition(l,h) {
     pivot = A[l];
     i=l; j=h;
     
@@ -37,7 +37,7 @@ Partition(l,h) {
 
 // quicksort
 QuickSort(l,h) {
-    pi = Partition(l, h);
+    pi = partition(l, h);
     QuickSort(l, pi-1);
     QuickSort(pi+1, h);
 }
