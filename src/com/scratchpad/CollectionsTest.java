@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Collections
+public class CollectionsTest
 {
     public static void main(String[] args)
     {
