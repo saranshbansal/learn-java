@@ -6,6 +6,8 @@ import java.util.Arrays;
 https://www.youtube.com/watch?v=7h1s2SojIRw
 Base idea: All elements to left are smaller than all elements to the right 
 then the element is said to be in 'sorted' position.
+Time: O(n log n) 
+Space: O(log(n)) 
 
 Algo:
 // partition
@@ -66,7 +68,7 @@ public class QuickSort
         while (i < j)
         {
             // move right to avoid pivot element 
-            i += 1;
+            i++;
             // scan left: find elements smaller than pivot
             while (i <= high && array[i] < pivot)
             {
@@ -83,7 +85,7 @@ public class QuickSort
                 swap(array, i, j);
             }
         }
-        // last step to put pivot in correct place
+        // last step to put pivot (or low) in correct place
         swap(array, low, j);
         return j;
     }
