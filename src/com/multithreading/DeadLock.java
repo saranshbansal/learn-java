@@ -1,5 +1,7 @@
 package com.multithreading;
 
+import java.util.concurrent.TimeUnit;
+
 public class DeadLock
 {
     public static Object Lock1 = new Object();
@@ -8,57 +10,49 @@ public class DeadLock
 
     public static void main(String args[])
     {
-        ThreadDemo1 T1 = new ThreadDemo1();
-        ThreadDemo2 T2 = new ThreadDemo2();
-        T1.start();
-        T2.start();
-    }
+        final Object lock1 = new Object();
+        final Object lock2 = new Object();
 
-    private static class ThreadDemo1 extends Thread
-    {
-        public void run()
+        Thread thread1 = new Thread(new Runnable()
         {
-            synchronized (Lock1)
+            @Override
+            public void run()
             {
-                System.out.println("Thread 1: Holding lock 1...");
-
-                try
+                synchronized (lock1)
                 {
-                    Thread.sleep(10);
-                }
-                catch (InterruptedException e)
-                {}
-                System.out.println("Thread 1: Waiting for lock 2...");
-
-                synchronized (Lock2)
-                {
-                    System.out.println("Thread 1: Holding lock 1 & 2...");
+                    System.out.println("Thread1 acquired lock1");
+                    try
+                    {
+                        TimeUnit.MILLISECONDS.sleep(500);
+                    }
+                    catch (InterruptedException ignore)
+                    {}
+                    synchronized (lock2)
+                    {
+                        System.out.println("Thread1 acquired lock2");
+                    }
                 }
             }
-        }
-    }
 
-    private static class ThreadDemo2 extends Thread
-    {
-        public void run()
+        });
+        thread1.start();
+
+        Thread thread2 = new Thread(new Runnable()
         {
-            synchronized (Lock2)
+            @Override
+            public void run()
             {
-                System.out.println("Thread 2: Holding lock 2...");
-
-                try
+                synchronized (lock2)
                 {
-                    Thread.sleep(10);
-                }
-                catch (InterruptedException e)
-                {}
-                System.out.println("Thread 2: Waiting for lock 1...");
-
-                synchronized (Lock1)
-                {
-                    System.out.println("Thread 2: Holding lock 1 & 2...");
+                    System.out.println("Thread2 acquired lock2");
+                    synchronized (lock1)
+                    {
+                        System.out.println("Thread2 acquired lock1");
+                    }
                 }
             }
-        }
+        });
+        thread2.start();
     }
+
 }
