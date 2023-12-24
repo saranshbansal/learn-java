@@ -1,7 +1,9 @@
 package com.hibernate.one2one;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
@@ -9,6 +11,8 @@ import javax.persistence.*;
 
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "ADDRESS")
 public class Address {
@@ -37,5 +41,13 @@ public class Address {
 		this.street = street;
 		this.city = city;
 		this.country = country;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 }

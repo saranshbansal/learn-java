@@ -1,7 +1,6 @@
 package com.scratchpad;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
@@ -15,6 +14,8 @@ import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static org.apache.commons.text.WordUtils.capitalizeFully;
 
 /**
  * Utility class for Date-Time conversion to standard formats used in Gartner applications
@@ -212,8 +213,8 @@ public class GartnerDateTimeUtil {
 			String startrDate, String endDate, Long monthBefore,
 			Long monthAfter, Integer breakAfter)
 			throws ParseException {
-		LocalDate start = LocalDate.parse(WordUtils.capitalizeFully(startrDate), ddMMMyyyyDateFormatJava8);
-		LocalDate end = LocalDate.parse(WordUtils.capitalizeFully(endDate), ddMMMyyyyDateFormatJava8);
+		LocalDate start = LocalDate.parse(capitalizeFully(startrDate), ddMMMyyyyDateFormatJava8);
+		LocalDate end = LocalDate.parse(capitalizeFully(endDate), ddMMMyyyyDateFormatJava8);
 		LocalDate adjustedStart = start.minusMonths(monthBefore);
 		LocalDate adjustedStop = end.plusMonths(monthAfter);
 		long numOfDaysBetween = ChronoUnit.DAYS.between(adjustedStart, adjustedStop);

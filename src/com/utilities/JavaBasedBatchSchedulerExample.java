@@ -1,13 +1,9 @@
 package com.utilities;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Logger;
 
-@Slf4j
 class ReportGenerator extends TimerTask {
 
 	@Override
