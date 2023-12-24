@@ -12,7 +12,7 @@ class Test3 {
 
 	static int solution(int[] A) {
 		int N = A.length;
-		Map<Integer, Integer> kvmap = new HashMap<Integer, Integer>();
+		Map<Integer, Integer> kvmap = new HashMap<>();
 		Integer result = 0;
 		for (int i = 0; i < N; i++) {
 			if (!kvmap.containsKey(A[i])) {

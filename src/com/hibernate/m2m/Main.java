@@ -12,11 +12,11 @@ public class Main {
 	public static void main(String[] args) {
 
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = null;
+		Transaction transaction;
 		try {
 			transaction = session.beginTransaction();
 
-			Set<Course> courses = new HashSet<Course>();
+			Set<Course> courses = new HashSet<>();
 			courses.add(new Course("Maths"));
 			courses.add(new Course("Computer Science"));
 
