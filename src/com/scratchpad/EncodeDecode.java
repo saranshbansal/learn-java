@@ -1,9 +1,10 @@
 package com.scratchpad;
 
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.util.Base64Utils;
 
 import java.io.IOException;
+
+import static org.apache.commons.codec.binary.Base64.decodeBase64;
 
 public class EncodeDecode {
 	public static void main(String[] args) {
@@ -24,7 +25,7 @@ public class EncodeDecode {
 
 	public String testEncodedCredentials(String encodedString) throws IOException {
 		byte[] encodedStringBytes = encodedString.getBytes("UTF-8");
-		byte[] decodedStringBytes = Base64Utils.decode(encodedStringBytes);
+		byte[] decodedStringBytes = decodeBase64(encodedStringBytes);
 		return new String(decodedStringBytes, "UTF-8");
 	}
 }

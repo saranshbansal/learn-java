@@ -1,6 +1,6 @@
 package com.scratchpad;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 public class NestedList {
 
 	private static List<GartnerMCPDto> findUpdatedMCPs(List<GartnerMCPDto> newList, List<GartnerMCPDto> oldList) {
-		List<GartnerMCPDto> filteredList = new ArrayList<>();
+		List<GartnerMCPDto> filteredList;
 		if (CollectionUtils.isEmpty(oldList)) {
 			filteredList = newList;
 		} else {
