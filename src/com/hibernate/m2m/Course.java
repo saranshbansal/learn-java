@@ -1,55 +1,45 @@
 package com.hibernate.m2m;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "COURSE")
-public class Course
-{
+public class Course {
 
-    private long courseId;
-    private String courseName;
-
-
-    public Course()
-    {}
+	private long courseId;
+	private String courseName;
 
 
-    public Course(String courseName)
-    {
-        this.courseName = courseName;
-    }
+	public Course() {
+	}
 
 
-    @Id
-    @GeneratedValue
-    @Column(name = "COURSE_ID")
-    public long getCourseId()
-    {
-        return this.courseId;
-    }
+	public Course(String courseName) {
+		this.courseName = courseName;
+	}
 
 
-    public void setCourseId(long courseId)
-    {
-        this.courseId = courseId;
-    }
+	@Id
+	@GeneratedValue
+	@Column(name = "COURSE_ID")
+	public long getCourseId() {
+		return this.courseId;
+	}
 
 
-    @Column(name = "COURSE_NAME", nullable = false)
-    public String getCourseName()
-    {
-        return this.courseName;
-    }
+	public void setCourseId(long courseId) {
+		this.courseId = courseId;
+	}
 
 
-    public void setCourseName(String courseName)
-    {
-        this.courseName = courseName;
-    }
+	@Column(name = "COURSE_NAME", nullable = false)
+	public String getCourseName() {
+		return this.courseName;
+	}
+
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
 
 }

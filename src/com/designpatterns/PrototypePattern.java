@@ -7,94 +7,78 @@ import java.util.Map;
  * @author sbansal
  * Prototype pattern (C) demo
  */
-abstract class Color implements Cloneable
-{
+abstract class Color implements Cloneable {
 
-    protected String colorName;
-
-
-    abstract void fillColor();
+	protected String colorName;
 
 
-    public Object clone()
-    {
+	abstract void fillColor();
 
-        Object clone = null;
-        try
-        {
-            clone = super.clone();
-        }
-        catch (CloneNotSupportedException e)
-        {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return clone;
-    }
+
+	public Object clone() {
+
+		Object clone = null;
+		try {
+			clone = super.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return clone;
+	}
 }
 
 
-class RedColor extends Color
-{
+class RedColor extends Color {
 
-    public RedColor()
-    {
-        this.colorName = "RED";
-    }
+	public RedColor() {
+		this.colorName = "RED";
+	}
 
 
-    @Override
-    void fillColor()
-    {
-        System.out.println("filling red color...");
-    }
+	@Override
+	void fillColor() {
+		System.out.println("filling red color...");
+	}
 }
 
 
-class GreenColor extends Color
-{
+class GreenColor extends Color {
 
-    public GreenColor()
-    {
-        this.colorName = "Green";
-    }
+	public GreenColor() {
+		this.colorName = "Green";
+	}
 
 
-    @Override
-    void fillColor()
-    {
-        System.out.println("filling green color...");
-    }
+	@Override
+	void fillColor() {
+		System.out.println("filling green color...");
+	}
 }
 
 
-class ColorStore
-{
+class ColorStore {
 
-    private static Map<String, Color> colorMap = new HashMap<String, Color>();
+	private static Map<String, Color> colorMap = new HashMap<String, Color>();
 
-    static
-    {
-        colorMap.put("red", new RedColor());
-        colorMap.put("green", new GreenColor());
-    }
+	static {
+		colorMap.put("red", new RedColor());
+		colorMap.put("green", new GreenColor());
+	}
 
 
-    public static Color getColor(String colorName)
-    {
+	public static Color getColor(String colorName) {
 
-        return (Color) colorMap.get(colorName).clone();
-    }
+		return (Color) colorMap.get(colorName).clone();
+	}
 }
 
 
-public class PrototypePattern
-{
-    public static void main(String a[])
-    {
-        ColorStore.getColor("red").fillColor();
-        ColorStore.getColor("green").fillColor();
-        ColorStore.getColor("green").fillColor();
-        ColorStore.getColor("red").fillColor();
-    }
+public class PrototypePattern {
+	public static void main(String a[]) {
+		ColorStore.getColor("red").fillColor();
+		ColorStore.getColor("green").fillColor();
+		ColorStore.getColor("green").fillColor();
+		ColorStore.getColor("red").fillColor();
+	}
 }

@@ -1,4 +1,4 @@
-package com.common.programs;
+package com.miscellaneous;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -10,17 +10,6 @@ import java.util.Map;
 import static java.time.LocalDateTime.now;
 
 public class StateTimeCalculator {
-
-	// Represents a state event with start and end timestamps and state name
-	static class StateEvent {
-		LocalDateTime timeStamp;
-		String state;
-
-		public StateEvent(LocalDateTime timeStamp, String state) {
-			this.timeStamp = timeStamp;
-			this.state = state;
-		}
-	}
 
 	// Calculates the total time spent in each state
 	public static void calculateTimeInStates(List<StateEvent> stateEvents) {
@@ -58,5 +47,16 @@ public class StateTimeCalculator {
 
 		// Calculate total time spent in each state
 		calculateTimeInStates(stateEvents);
+	}
+
+	// Represents a state event with start and end timestamps and state name
+	static class StateEvent {
+		LocalDateTime timeStamp;
+		String state;
+
+		public StateEvent(LocalDateTime timeStamp, String state) {
+			this.timeStamp = timeStamp;
+			this.state = state;
+		}
 	}
 }

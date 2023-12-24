@@ -1,34 +1,31 @@
 package com.hibernate.one2one;
 
-import java.util.List;
-
 import org.hibernate.Session;
 
-public class HibernateStandAlone
-{
+import java.util.List;
 
-    @SuppressWarnings("unchecked")
-    public static void main(String[] args)
-    {
+public class HibernateStandAlone {
 
-        Student student = new Student("Sam", "Disilva", "Maths");
-        Address address = new Address("10 Silver street", "NYC", "USA");
+	@SuppressWarnings("unchecked")
+	public static void main(String[] args) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+		Student student = new Student("Sam", "Disilva", "Maths");
+		Address address = new Address("10 Silver street", "NYC", "USA");
 
-        student.setAddress(address);
-        address.setStudent(student);
-        session.save(student);
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		session.beginTransaction();
 
-        List<Student> students = (List<Student>) session.createQuery("from Student ").list();
-        for (Student s : students)
-        {
-            System.out.println("Details : " + s);
-        }
+		student.setAddress(address);
+		address.setStudent(student);
+		session.save(student);
 
-        session.getTransaction().commit();
-        session.close();
-    }
+		List<Student> students = (List<Student>) session.createQuery("from Student ").list();
+		for (Student s : students) {
+			System.out.println("Details : " + s);
+		}
+
+		session.getTransaction().commit();
+		session.close();
+	}
 
 }

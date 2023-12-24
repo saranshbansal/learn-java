@@ -1,117 +1,97 @@
 package com.hibernate.one2one;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "STUDENT")
-public class Student
-{
+public class Student {
 
-    @Id
-    @GeneratedValue
-    @Column(name = "STUDENT_ID")
-    private long id;
+	@Id
+	@GeneratedValue
+	@Column(name = "STUDENT_ID")
+	private long id;
 
-    @Column(name = "FIRST_NAME")
-    private String firstName;
+	@Column(name = "FIRST_NAME")
+	private String firstName;
 
-    @Column(name = "LAST_NAME")
-    private String lastName;
+	@Column(name = "LAST_NAME")
+	private String lastName;
 
-    @Column(name = "SECTION")
-    private String section;
+	@Column(name = "SECTION")
+	private String section;
 
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
-    private Address address;
-
-
-    public Student()
-    {
-
-    }
+	@OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+	private Address address;
 
 
-    public Student(String firstName, String lastName, String section)
-    {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.section = section;
-    }
+	public Student() {
+
+	}
 
 
-    public long getId()
-    {
-        return id;
-    }
+	public Student(String firstName, String lastName, String section) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.section = section;
+	}
 
 
-    public void setId(long id)
-    {
-        this.id = id;
-    }
+	public long getId() {
+		return id;
+	}
 
 
-    public String getFirstName()
-    {
-        return firstName;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
 
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
 
-    public String getLastName()
-    {
-        return lastName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
 
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
 
-    public String getSection()
-    {
-        return section;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 
-    public void setSection(String section)
-    {
-        this.section = section;
-    }
+	public String getSection() {
+		return section;
+	}
 
 
-    public Address getAddress()
-    {
-        return address;
-    }
+	public void setSection(String section) {
+		this.section = section;
+	}
 
 
-    public void setAddress(Address address)
-    {
-        this.address = address;
-    }
+	public Address getAddress() {
+		return address;
+	}
 
 
-    @Override
-    public String toString()
-    {
-        return "Student [id="
-            + id + ", firstName=" + firstName + ", lastName="
-            + lastName + ", section=" + section + ", address=" + address
-            + "]";
-    }
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Student [id="
+				+ id + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", section=" + section + ", address=" + address
+				+ "]";
+	}
 
 }

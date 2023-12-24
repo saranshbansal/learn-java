@@ -6,10 +6,8 @@ package com.scratchpad;
 /**
  * @author sbansal
  */
-public class EscapeUtil
-{
-    public static void main(String[] args)
-    {
-        String testStr = "&quot;3244324";
-    }
+public class EscapeUtil {
+	public static void main(String[] args) {
+		String testStr = "&quot;3244324";
+	}
 }

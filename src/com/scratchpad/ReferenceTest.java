@@ -1,6 +1,5 @@
 package com.scratchpad;
 
-public class ReferenceTest
-{
+public class ReferenceTest {
 
 }

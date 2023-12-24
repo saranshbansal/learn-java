@@ -6,3 +6,4 @@ bin*
 .springBeans
 .settings
 .idea
+/classes/

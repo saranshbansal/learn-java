@@ -2,38 +2,31 @@ package com.designpatterns;
 
 /**
  * Double-check locking thread safe Singleton Pattern (C)
- *
  */
-public class SingletonPattern
-{
+public class SingletonPattern {
 
-    private static volatile SingletonPattern instance;
-
-
-    // final fields
-
-    private SingletonPattern()
-    {}
+	private static volatile SingletonPattern instance;
 
 
-    public static SingletonPattern getInstance()
-    {
-        if (instance == null)
-        {
-            synchronized (SingletonPattern.class)
-            {
-                if (instance == null)
-                {
-                    instance = new SingletonPattern();
-                }
-            }
-        }
-        return instance;
-    }
+	// final fields
+
+	private SingletonPattern() {
+	}
 
 
-    public static void main(String[] args)
-    {
-        System.out.println(SingletonPattern.getInstance());
-    }
+	public static SingletonPattern getInstance() {
+		if (instance == null) {
+			synchronized (SingletonPattern.class) {
+				if (instance == null) {
+					instance = new SingletonPattern();
+				}
+			}
+		}
+		return instance;
+	}
+
+
+	public static void main(String[] args) {
+		System.out.println(SingletonPattern.getInstance());
+	}
 }
