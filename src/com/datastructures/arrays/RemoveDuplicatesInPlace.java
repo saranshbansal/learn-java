@@ -1,46 +1,22 @@
 package com.datastructures.arrays;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.lang.Boolean.TRUE;
+import java.util.Arrays;
 
 public class RemoveDuplicatesInPlace {
 	public static int removeDuplicates(int[] nums) {
-		Map<Integer, Boolean> visitorMap = new HashMap<>();
-		for (int i = 0; i < nums.length; i++) {
-			if (visitorMap.getOrDefault(nums[i], false) == TRUE) {
-				deleteElemFromArray(nums, nums[i]);
-			} else {
-				visitorMap.put(nums[i], true);
+		// Sort un-sorted array
+		Arrays.sort(nums);
+
+		int n = nums.length;
+		int k = 0;
+		for (int i = 0; i < n - 1; i++) {
+			if (nums[i] != nums[i+1]) {
+				nums[k++] = nums[i];
 			}
 		}
+		nums[k++] = nums[n-1];
 
-		return visitorMap.keySet().size();
-	}
-
-	private static int deleteElemFromArray(int[] arr, int elementToDelete) {
-		int n = arr.length;
-		int i;
-
-		// Find the index of the element to be deleted
-		for (i = 0; i < n; i++) {
-			if (arr[i] == elementToDelete) {
-				break;
-			}
-		}
-
-		// If the element is not present in the array
-		if (i == n) {
-			return n;
-		}
-
-		// Shift elements to fill the gap
-		for (int j = i; j < n - 1; j++) {
-			arr[j] = arr[j + 1];
-		}
-
-		return n - 1; // Return the new size of the array
+		return k;
 	}
 
 	public static void main(String[] args) {
@@ -49,6 +25,7 @@ public class RemoveDuplicatesInPlace {
 
 		int k = removeDuplicates(nums); // Calls your implementation
 
+		// Test assertions
 		assert k == expectedNums.length;
 		for (int i = 0; i < k; i++) {
 			assert nums[i] == expectedNums[i];
