@@ -1,7 +1,5 @@
 package com.datastructures.arrays;
 
-import java.util.Arrays;
-
 import static java.util.Arrays.sort;
 
 public class RemoveElementInPlace {
