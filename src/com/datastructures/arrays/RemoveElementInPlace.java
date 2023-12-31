@@ -3,6 +3,14 @@ package com.datastructures.arrays;
 import static java.util.Arrays.sort;
 
 public class RemoveElementInPlace {
+
+	/**
+	 * Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The relative order of the elements may be changed.
+	 *
+	 * @param nums integer array
+	 * @param val value to be deleted
+	 * @return last index of the updated array
+	 */
 	public static int removeElement(int[] nums, int val) {
 		int n = nums.length;
 		int j = 0;

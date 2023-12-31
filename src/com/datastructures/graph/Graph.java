@@ -36,6 +36,6 @@ public class Graph {
 		if (adjacent == null) {
 			return new LinkedList();
 		}
-		return new LinkedList<String>(adjacent);
+		return new LinkedList<>(adjacent);
 	}
 }

@@ -1,10 +1,10 @@
 package com.datastructures.arrays;
 
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.Arrays;
 
 public class ArraySumEqualsK {
+
 	public static int[] twoSum(int[] nums, int target) {
 		int[] result = new int[2];
 

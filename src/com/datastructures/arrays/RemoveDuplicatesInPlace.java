@@ -1,11 +1,11 @@
 package com.datastructures.arrays;
 
-import java.util.Arrays;
+import static java.util.Arrays.sort;
 
 public class RemoveDuplicatesInPlace {
 	public static int removeDuplicates(int[] nums) {
 		// Sort un-sorted array
-		Arrays.sort(nums);
+		sort(nums);
 
 		int n = nums.length;
 		int k = 0;
