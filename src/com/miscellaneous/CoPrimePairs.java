@@ -51,8 +51,7 @@ public class CoPrimePairs {
 	}
 
 
-	public static void main(String args[])
-			throws IOException {
+	public static void main(String[] args) {
 		int m = 1000000007;
 
 		int result = saveBatman(2, 3);

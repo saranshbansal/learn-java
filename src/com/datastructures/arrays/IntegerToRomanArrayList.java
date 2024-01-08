@@ -1,4 +1,4 @@
-package com.miscellaneous;
+package com.datastructures.arrays;
 
 public class IntegerToRomanArrayList {
 	public static void main(String[] args) {

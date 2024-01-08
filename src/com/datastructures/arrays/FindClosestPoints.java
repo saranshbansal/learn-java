@@ -1,29 +1,29 @@
-package com.miscellaneous;
+package com.datastructures.arrays;
 
 import java.util.Arrays;
 
 public class FindClosestPoints {
 
 	public static void main(String[] args) {
-		int A[] = {2, -4, 6, -3, 9};
-		int parSumA[] = new int[A.length];
+		int[] arr = {2, -4, 6, -3, 9};
+		int[] parSumA = new int[arr.length];
 		int sum = 0;
-		for (int i = 0; i < A.length; i++) {
-			parSumA[i] = sum + A[i];
-			sum = sum + A[i];
+		for (int i = 0; i < arr.length; i++) {
+			parSumA[i] = sum + arr[i];
+			sum = sum + arr[i];
 		}
 
 		Arrays.sort(parSumA);
-		for (int i = 0; i < parSumA.length; i++) {
-			System.out.println(parSumA[i]);
+		for (int value : parSumA) {
+			System.out.println(value);
 		}
 		int min = Integer.MAX_VALUE;
-		int pos1 = 0, pos2 = 0;
+		int pos1 = 0;
+		int pos2 = 0;
 		for (int j = 0; j < parSumA.length; j++) {
 			for (int k = j + 1; k < parSumA.length; k++) {
 				if (calculateDistance(parSumA[j], parSumA[k]) < min) {
 					min = calculateDistance(parSumA[j], parSumA[k]);
-					;
 					pos1 = j;
 					pos2 = k;
 				}
@@ -32,7 +32,7 @@ public class FindClosestPoints {
 		System.out.println("The closest two points are " + "(" + pos1 + ", " + pos2 + ")");
 		int minAbsSum = 0;
 		for (int l = pos1; l <= pos2; l++) {
-			minAbsSum = minAbsSum + A[l];
+			minAbsSum = minAbsSum + arr[l];
 		}
 		System.out.println("FINAL: " + minAbsSum);
 	}
@@ -41,5 +41,4 @@ public class FindClosestPoints {
 	public static int calculateDistance(int a, int b) {
 		return Math.abs(a - b);
 	}
-
 }

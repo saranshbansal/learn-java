@@ -1,6 +1,4 @@
-package com.miscellaneous;
-
-import java.io.IOException;
+package com.datastructures.string;
 
 public class BalanceBraces {
 
@@ -9,11 +7,7 @@ public class BalanceBraces {
 			return true;
 		} else if (c1 == '{' && c2 == '}') {
 			return true;
-		} else if (c1 == '[' && c2 == ']') {
-			return true;
-		} else {
-			return false;
-		}
+		} else return c1 == '[' && c2 == ']';
 	}
 
 	// Complete the braces function below.
@@ -24,23 +18,15 @@ public class BalanceBraces {
 				st.push(c);
 			}
 
-			if (c == ')' || c == '}' || c == ']') {
-				if (st.isEmpty()) {
-					return false;
-				} else if (!isMatching(st.pop(), c)) {
-					return false;
-				}
+			if (c == ')' || c == '}' || c == ']' && (st.isEmpty() || !isMatching(st.pop(), c))) {
+				return false;
 			}
 		}
 
-		if (st.isEmpty()) {
-			return true;
-		} else {
-			return false;
-		}
+		return st.isEmpty();
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 
 		String input = "{}{}([]0)";
 
@@ -49,7 +35,7 @@ public class BalanceBraces {
 
 	static class Stack {
 		int top = -1;
-		char items[] = new char[100];
+		char[] items = new char[100];
 
 
 		void push(char c) {
@@ -73,7 +59,7 @@ public class BalanceBraces {
 
 
 		boolean isEmpty() {
-			return (top == -1) ? true : false;
+			return (top == -1);
 		}
 	}
 

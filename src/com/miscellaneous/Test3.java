@@ -1,4 +1,4 @@
-package com.test.codility.demo;
+package com.miscellaneous;
 
 import java.util.HashMap;
 import java.util.Map;

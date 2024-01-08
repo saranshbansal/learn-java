@@ -2,6 +2,17 @@ package com.miscellaneous;
 
 public class CountNodesLinkedList {
 
+	static class Node {
+		Node next;
+		int key;
+
+
+		public Node(int key) {
+			super();
+			this.key = key;
+		}
+	}
+
 	public static void main(String[] args) {
 
 		Node node = new Node(101);
@@ -21,17 +32,4 @@ public class CountNodesLinkedList {
 		}
 		return 1 + countNodesinLoop(list.next);
 	}
-
-	static class Node {
-		Node next;
-		int key;
-
-
-		public Node(int key) {
-			super();
-			this.key = key;
-		}
-
-	}
-
 }
