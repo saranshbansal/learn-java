@@ -8,12 +8,12 @@ import java.util.TreeMap;
 
 // Class to store all Nodes with their normalized levels.
 class NodePack {
-	Node node;
+	TreeNode treeNode;
 	int lvl;
 
 
-	NodePack(Node node, int lvl) {
-		this.node = node;
+	NodePack(TreeNode treeNode, int lvl) {
+		this.treeNode = treeNode;
 		this.lvl = lvl;
 	}
 }
@@ -22,7 +22,7 @@ class NodePack {
 //Java program to print top view of binary tree
 public class TreeTopView {
 
-	Node root;
+	TreeNode root;
 
 
 	public TreeTopView() {
@@ -42,22 +42,22 @@ public class TreeTopView {
          \
              6*/
 		TreeTopView tree = new TreeTopView();
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.right = new Node(4);
-		tree.root.left.right.right = new Node(5);
-		tree.root.left.right.right.right = new Node(6);
+		tree.root = new TreeNode(1);
+		tree.root.left = new TreeNode(2);
+		tree.root.right = new TreeNode(3);
+		tree.root.left.right = new TreeNode(4);
+		tree.root.left.right.right = new TreeNode(5);
+		tree.root.left.right.right.right = new TreeNode(6);
 		System.out.println("Following are nodes in top view of Binary Tree");
 		tree.topView(tree.root);
 	}
 
 	// function should print the topView of
 	// the binary tree
-	private void topView(Node root) {
+	private void topView(TreeNode root) {
 		Queue<NodePack> q = new LinkedList<>();
 		// map to compare levels and store output
-		Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>();
+		Map<Integer, TreeNode> topViewMap = new TreeMap<Integer, TreeNode>();
 
 		if (root == null) {
 			return;
@@ -76,18 +76,18 @@ public class TreeTopView {
 
 			// store nodes at unique normalized levels to our top view map.
 			if (!topViewMap.containsKey(thisNodePack.lvl)) {
-				topViewMap.put(thisNodePack.lvl, thisNodePack.node);
+				topViewMap.put(thisNodePack.lvl, thisNodePack.treeNode);
 			}
 
-			if (thisNodePack.node.left != null) {
-				q.add(new NodePack(thisNodePack.node.left, thisNodePack.lvl - 1));
+			if (thisNodePack.treeNode.left != null) {
+				q.add(new NodePack(thisNodePack.treeNode.left, thisNodePack.lvl - 1));
 			}
-			if (thisNodePack.node.right != null) {
-				q.add(new NodePack(thisNodePack.node.right, thisNodePack.lvl + 1));
+			if (thisNodePack.treeNode.right != null) {
+				q.add(new NodePack(thisNodePack.treeNode.right, thisNodePack.lvl + 1));
 			}
 
 		}
-		for (Entry<Integer, Node> entry : topViewMap.entrySet()) {
+		for (Entry<Integer, TreeNode> entry : topViewMap.entrySet()) {
 			System.out.print(entry.getValue().key);
 		}
 	}

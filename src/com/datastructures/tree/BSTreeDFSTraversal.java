@@ -9,7 +9,7 @@ package com.datastructures.tree;
 public class BSTreeDFSTraversal {
 
 	// Root of BST
-	Node root;
+	TreeNode root;
 
 
 	// Constructor
@@ -55,11 +55,11 @@ public class BSTreeDFSTraversal {
 	}
 
 	/* A recursive function to insert a new key in BST */
-	Node insertRec(Node root, int key) {
+	TreeNode insertRec(TreeNode root, int key) {
 
 		/* If the tree is empty, return a new node */
 		if (root == null) {
-			root = new Node(key);
+			root = new TreeNode(key);
 			return root;
 		}
 
@@ -89,7 +89,7 @@ public class BSTreeDFSTraversal {
 	}
 
 	// A utility function to do inorder traversal of BST
-	void inorderRec(Node root) {
+	void inorderRec(TreeNode root) {
 		if (root != null) {
 			inorderRec(root.left);
 			System.out.println(root.key);
@@ -98,7 +98,7 @@ public class BSTreeDFSTraversal {
 	}
 
 	// A utility function to do preorder traversal of BST
-	void preorderRec(Node root) {
+	void preorderRec(TreeNode root) {
 		if (root != null) {
 			System.out.println(root.key);
 			inorderRec(root.left);
@@ -107,7 +107,7 @@ public class BSTreeDFSTraversal {
 	}
 
 	// A utility function to do postorder traversal of BST
-	void postorderRec(Node root) {
+	void postorderRec(TreeNode root) {
 		if (root != null) {
 			inorderRec(root.left);
 			inorderRec(root.right);

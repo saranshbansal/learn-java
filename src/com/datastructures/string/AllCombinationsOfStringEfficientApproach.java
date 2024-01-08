@@ -1,4 +1,4 @@
-package com.miscellaneous;
+package com.datastructures.string;
 
 // Algorithm Paradigm: Backtracking
 // Time Complexity: O(n*n!)

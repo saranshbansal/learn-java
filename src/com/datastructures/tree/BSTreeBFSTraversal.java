@@ -3,7 +3,7 @@ package com.datastructures.tree;
 // Recursive Java program for level order traversal of Binary Tree 
 class BSTreeBFSTraversal {
 	// Root of the Binary Tree
-	Node root;
+	TreeNode root;
 
 
 	public BSTreeBFSTraversal() {
@@ -13,12 +13,12 @@ class BSTreeBFSTraversal {
 	/* Driver program to test above functions */
 	public static void main(String args[]) {
 		BSTreeBFSTraversal tree = new BSTreeBFSTraversal();
-		tree.root = new Node(1);
-		tree.root.left = new Node(2);
-		tree.root.right = new Node(3);
-		tree.root.left.left = new Node(4);
-		tree.root.left.right = new Node(5);
-		tree.root.left.right.left = new Node(6);
+		tree.root = new TreeNode(1);
+		tree.root.left = new TreeNode(2);
+		tree.root.right = new TreeNode(3);
+		tree.root.left.left = new TreeNode(4);
+		tree.root.left.right = new TreeNode(5);
+		tree.root.left.right.left = new TreeNode(6);
 
 		System.out.println("Level order traversal of binary tree is ");
 		tree.printLevelOrder();
@@ -35,7 +35,7 @@ class BSTreeBFSTraversal {
 	/* Compute the "height" of a tree -- the number of
 	nodes along the longest path from the root node
 	down to the farthest leaf node.*/
-	int height(Node root) {
+	int height(TreeNode root) {
 		if (null == root)
 			return 0;
 		if (root.left == null && root.right == null)
@@ -45,7 +45,7 @@ class BSTreeBFSTraversal {
 	}
 
 	/* Print nodes at the given level */
-	void printGivenLevel(Node root, int level) {
+	void printGivenLevel(TreeNode root, int level) {
 		if (root == null)
 			return;
 		if (level == 1)
