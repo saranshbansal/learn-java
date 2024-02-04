@@ -1,7 +1,5 @@
 package com.miscellaneous;
 
-import java.io.IOException;
-
 public class CoPrimePairs {
 
 	// return gcd of a and b

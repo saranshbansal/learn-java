@@ -3,9 +3,6 @@ package com.datastructures.arrays;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.toMap;
-
 /**
  * https://leetcode.com/problems/reward-top-k-students/
  */

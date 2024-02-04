@@ -1,4 +1,4 @@
-package com.miscellaneous;
+package com.datastructures.linkedlist;
 
 public class CountNodesLinkedList {
 
