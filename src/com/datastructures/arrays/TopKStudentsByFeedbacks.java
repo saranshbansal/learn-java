@@ -1,7 +1,9 @@
 package com.datastructures.arrays;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
+import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toMap;
 
 /**
@@ -21,20 +23,24 @@ public class TopKStudentsByFeedbacks {
 		}
 	}
 
-	public List<Integer> topStudents(String[] positiveFeedbacks, String[] negativeFeedbacks, String[] report, int[] studentIds, int k) {
+	public List<Integer> topStudents(String[] positive_feedback, String[] negative_feedback, String[] report,
+									 int[] student_id, int k) {
+
+		Set<String> positiveFeedbackSet = new HashSet<>(Arrays.asList(positive_feedback));
+		Set<String> negativeFeedbackSet = new HashSet<>(Arrays.asList(negative_feedback));
 		Map<Integer, Integer> studentIdToScore = new HashMap<>();
 
 		for (int i = 0; i < report.length; i++) {
 			int score = 0;
 			String[] words = report[i].split(" ");
 			for (String word : words) {
-				if (isFeedbackPresent(positiveFeedbacks, word)) {
+				if (positiveFeedbackSet.contains(word)) {
 					score += 3;
-				} else if (isFeedbackPresent(negativeFeedbacks, word)) {
+				} else if (negativeFeedbackSet.contains(word)) {
 					score -= 1;
 				}
 			}
-			studentIdToScore.putIfAbsent(studentIds[i], score);
+			studentIdToScore.putIfAbsent(student_id[i], score);
 		}
 
 		// sort the map by value in descending order and then by key in ascending order.
@@ -42,11 +48,7 @@ public class TopKStudentsByFeedbacks {
 				.sorted(Map.Entry.<Integer, Integer>comparingByValue().reversed()
 						.thenComparing(Map.Entry.comparingByKey()))
 				.limit(k)
-				.collect(toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 		return new ArrayList<>(sortedMap.keySet());
-	}
-
-	private boolean isFeedbackPresent(String[] feedbacks, String word) {
-		return Arrays.asList(feedbacks).contains(word);
 	}
 }
