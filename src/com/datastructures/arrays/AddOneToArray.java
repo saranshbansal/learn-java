@@ -2,7 +2,7 @@ package com.datastructures.arrays;
 
 import java.util.Arrays;
 
-public class PlusOne {
+public class AddOneToArray {
 
 	/**
 	 * Given a non-empty array of decimal digits representing a non-negative
