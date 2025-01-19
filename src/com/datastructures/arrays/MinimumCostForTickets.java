@@ -31,26 +31,29 @@ package com.datastructures.arrays;
  */
 public class MinimumCostForTickets {
 	public int mincostTickets(int[] days, int[] costs) {
-		int lastDay = days[days.length - 1];
-		boolean[] travelDays = new boolean[lastDay + 1];
+		int lastDay = days[days.length - 1];  // Find the last day of travel
+		boolean[] travelDays = new boolean[lastDay + 1];  // Create array to mark travel days
 		for (int day : days) {
-			travelDays[day] = true;
+			travelDays[day] = true;  // Mark days when travel is needed as true
 		}
 
-		int[] dp = new int[lastDay + 1];
+		int[] dp = new int[lastDay + 1];  // Stores minimum cost up to each day
 
 		for (int i = 1; i <= lastDay; i++) {
-			if (!travelDays[i]) {
-				dp[i] = dp[i - 1];
+			if (!travelDays[i]) {  // If no travel on this day
+				dp[i] = dp[i - 1];  // Cost same as previous day
 				continue;
 			}
 
-			int cost1 = dp[Math.max(0, i - 1)] + costs[0];
-			int cost7 = dp[Math.max(0, i - 7)] + costs[1];
-			int cost30 = dp[Math.max(0, i - 30)] + costs[2];
+			// Calculate cost with different passes
+			int cost1 = dp[Math.max(0, i - 1)] + costs[0];  // 1-day pass
+			int cost7 = dp[Math.max(0, i - 7)] + costs[1];  // 7-day pass
+			int cost30 = dp[Math.max(0, i - 30)] + costs[2];  // 30-day pass
 
+			// Take minimum of all three options
 			dp[i] = Math.min(cost1, Math.min(cost7, cost30));
 		}
+
 
 		return dp[lastDay];
 	}
