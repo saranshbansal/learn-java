@@ -5,8 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 public class CIOCheck {
 	public static boolean validateCIOMembership(String partnum) {
 		if (StringUtils.isNotBlank(partnum)) {
-			return (StringUtils.startsWith(partnum, "ITESIG")
-					|| StringUtils.startsWith(partnum, "SIG")) ? true : false;
+			return StringUtils.startsWith(partnum, "ITESIG")
+					|| StringUtils.startsWith(partnum, "SIG");
 		}
 		return false;
 	}
