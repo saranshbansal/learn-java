@@ -23,12 +23,12 @@ public class TreeCountNodes {
 	}
 
 
-	private static int countNodes(TreeNode tree) {
-		if (null == tree)
+	private static int countNodes(TreeNode node) {
+		if (null == node)
 			return 0;
-		if (tree.left == null && tree.right == null)
+		if (node.left == null && node.right == null)
 			return 1;
 		else
-			return countNodes(tree.left) + countNodes(tree.right) + 1;
+			return countNodes(node.left) + countNodes(node.right) + 1;
 	}
 }

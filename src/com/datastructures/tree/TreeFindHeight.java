@@ -17,12 +17,12 @@ public class TreeFindHeight {
 	}
 
 
-	private static int findHeight(TreeNode tree) {
-		if (null == tree)
+	private static int findHeight(TreeNode node) {
+		if (null == node)
 			return 0;
-		if (tree.left == null && tree.right == null)
+		if (node.left == null && node.right == null)
 			return 1;
 		else
-			return Math.max(findHeight(tree.left), findHeight(tree.right)) + 1;
+			return Math.max(findHeight(node.left), findHeight(node.right)) + 1;
 	}
 }

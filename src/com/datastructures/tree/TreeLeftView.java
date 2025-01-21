@@ -1,13 +1,11 @@
 package com.datastructures.tree;
 
-//Java program to print left view of binary tree
+// Java program to print left view of binary tree
 public class TreeLeftView {
-	static int max_level = 0;
+	private int maxLevel;
 	TreeNode root;
 
-	/* testing for example nodes */
-	public static void main(String args[]) {
-		/* creating a binary tree and entering the nodes */
+	public static void main(String[] args) {
 		TreeLeftView tree = new TreeLeftView();
 		tree.root = new TreeNode(12);
 		tree.root.left = new TreeNode(10);
@@ -19,24 +17,23 @@ public class TreeLeftView {
 	}
 
 	// recursive function to print left view
-	void leftViewUtil(TreeNode treeNode, int level) {
-		// Base Case
-		if (treeNode == null)
+	void printLeftView(TreeNode node, int level) {
+		if (node == null)
 			return;
 
 		// If this is the first node of its level
-		if (max_level < level) {
-			System.out.print(" " + treeNode.key);
-			max_level = level;
+		if (maxLevel < level) {
+			System.out.print(" " + node.key);
+			maxLevel = level;
 		}
 
-		// Recur for left and right subtrees
-		leftViewUtil(treeNode.left, level + 1);
-		leftViewUtil(treeNode.right, level + 1);
+		// Recursively print left and right subtrees
+		printLeftView(node.left, level + 1);
+		printLeftView(node.right, level + 1);
 	}
 
-	// A wrapper over leftViewUtil()
 	void leftView() {
-		leftViewUtil(root, 1);
+		maxLevel = 0;
+		printLeftView(root, 1);
 	}
 }

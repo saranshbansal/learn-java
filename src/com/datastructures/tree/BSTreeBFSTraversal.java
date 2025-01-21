@@ -1,6 +1,6 @@
 package com.datastructures.tree;
 
-// Recursive Java program for level order traversal of Binary Tree 
+// Recursive Java program for level order traversal of Binary Tree aka BFS
 class BSTreeBFSTraversal {
 	// Root of the Binary Tree
 	TreeNode root;
@@ -11,7 +11,7 @@ class BSTreeBFSTraversal {
 	}
 
 	/* Driver program to test above functions */
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		BSTreeBFSTraversal tree = new BSTreeBFSTraversal();
 		tree.root = new TreeNode(1);
 		tree.root.left = new TreeNode(2);
