@@ -1,11 +1,10 @@
 package com.hibernate.many2one;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.*;
 
 @Data
 @Builder
@@ -15,27 +14,27 @@ import javax.persistence.*;
 @Table(name = "STUDENT")
 public class Student {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "STUDENT_ID")
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "STUDENT_ID")
+    private long id;
 
-	@Column(name = "FIRST_NAME")
-	private String firstName;
+    @Column(name = "FIRST_NAME", nullable = false)
+    private String firstName;
 
-	@Column(name = "LAST_NAME")
-	private String lastName;
+    @Column(name = "LAST_NAME", nullable = false)
+    private String lastName;
 
-	@Column(name = "SECTION")
-	private String section;
+    @Column(name = "SECTION")
+    private String section;
 
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "UNIVERSITY_ID")
-	private University university;
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "UNIVERSITY_ID", nullable = false)
+    private University university;
 
-	public Student(String firstName, String lastName, String section) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.section = section;
-	}
+    public Student(String firstName, String lastName, String section) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.section = section;
+    }
 }

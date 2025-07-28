@@ -1,11 +1,12 @@
 package com.hibernate.many2one;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -16,30 +17,32 @@ import java.util.List;
 @Table(name = "UNIVERSITY")
 public class University {
 
-	@Id
-	@GeneratedValue
-	@Column(name = "UNIVERSITY_ID")
-	private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "UNIVERSITY_ID")
+    private long id;
 
-	@Column(name = "NAME")
-	private String name;
+    @Column(name = "NAME", nullable = false, length = 100)
+    private String name;
 
-	@Column(name = "COUNTRY")
-	private String country;
+    @Column(name = "COUNTRY", length = 50)
+    private String country;
 
-	@OneToMany(mappedBy = "university", cascade = CascadeType.ALL)
-	private List<Student> students;
+    @Builder.Default
+    @OneToMany(mappedBy = "university",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    private List<Student> students = new ArrayList<>();
 
-	public University(String name, String country) {
-		this.name = name;
-		this.country = country;
-	}
+    // Helper method to manage bidirectional relationship
+    public void addStudent(Student student) {
+        students.add(student);
+        student.setUniversity(this);
+    }
 
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
+    public void removeStudent(Student student) {
+        students.remove(student);
+        student.setUniversity(null);
+    }
 }

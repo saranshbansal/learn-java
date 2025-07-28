@@ -1,6 +1,5 @@
 package com.scratchpad;
 
-import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;

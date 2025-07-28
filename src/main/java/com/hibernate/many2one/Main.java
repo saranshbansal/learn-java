@@ -1,55 +1,65 @@
 package com.hibernate.many2one;
 
-import org.hibernate.Session;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        try (EntityManager em = HibernateUtil.getEntityManager()) {
+            EntityTransaction tx = em.getTransaction();
+            try {
+                tx.begin();
+                
+                // Create and save university
+                University university = University.builder()
+                        .name("CAMBRIDGE")
+                        .country("ENGLAND")
+                        .build();
+                
+                // Create and save students
+                Student student1 = Student.builder()
+                        .firstName("Sam")
+                        .lastName("Disilva")
+                        .section("Maths")
+                        .university(university)
+                        .build();
 
-		Student student1 = new Student("Sam", "Disilva", "Maths");
-		Student student2 = new Student("Joshua", "Brill", "Science");
-		Student student3 = new Student("Peter", "Pan", "Physics");
+                Student student2 = Student.builder()
+                        .firstName("Joshua")
+                        .lastName("Brill")
+                        .section("Science")
+                        .university(university)
+                        .build();
 
-		University university = new University("CAMBRIDGE", "ENGLAND");
-		List<Student> allStudents = new ArrayList<Student>();
-
-		student1.setUniversity(university);
-		student2.setUniversity(university);
-		student3.setUniversity(university);
-
-		allStudents.add(student1);
-		allStudents.add(student2);
-		allStudents.add(student3);
-
-		university.setStudents(allStudents);
-
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-
-		session.persist(university);// Students will be presisted automatically,
-		// thanks to CASCADE.ALL defined on students
-		// property of University class.
-
-		List<Student> students =
-				(List<Student>) session
-						.createQuery(
-								"from Student ")
-						.list();
-		for (Student s : students) {
-			System.out.println("Student Details : " + s);
-			System.out.println(
-					"Student University Details: "
-							+ s.getUniversity());
-		}
-
-		// Note that now you can also access the relationship from University to Student
-
-		session.getTransaction().commit();
-		session.close();
-	}
-
+                // Add students to university
+                university.addStudent(student1);
+                university.addStudent(student2);
+                
+                em.persist(university);
+                tx.commit();
+                
+                // Query and print results
+                List<Student> students = em.createQuery("SELECT s FROM Student s", Student.class).getResultList();
+                students.forEach(student -> 
+                    logger.info("Student: {} {}, University: {}", 
+                        student.getFirstName(), 
+                        student.getLastName(), 
+                        student.getUniversity().getName()));
+                        
+            } catch (Exception e) {
+                if (tx != null && tx.isActive()) tx.rollback();
+                logger.error("Transaction failed", e);
+            }
+        } catch (Exception e) {
+            logger.error("Error in main", e);
+        } finally {
+            HibernateUtil.shutdown();
+        }
+    }
 }
