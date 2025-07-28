@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CSVReaderInJava {
 	public static void main(String... args) {
-		List<Book> books = readBooksFromCSV("src/books.csv");
+		List<Book> books = readBooksFromCSV("src/main/resources/books.csv");
 		// let's print all the person read from CSV file
 		for (Book b : books) {
 			System.out.println(b);
