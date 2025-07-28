@@ -1,32 +1,53 @@
 package com.algos.sort;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
- * Comparison based algorithm: Each pair of adjacent elements are compared in each pass until array is sorted. Ο(n2)
+ * A simple implementation of Bubble Sort algorithm.
+ * Repeatedly steps through the list, compares adjacent elements and swaps them if they are in wrong order.
+ * The pass through the list is repeated until the list is sorted.
  */
-@Slf4j
 public class BubbleSort {
     public static void main(String[] args) {
-        int a[] = {1, 5, 7, 9, 4, 0, 0, 0, 6};
-        int temp;
-        for (int i = 0; i < a.length; i++) { // n-passes
-            boolean flg = false;
-            for (int j = 0; j < a.length - i - 1; j++) { // ith pass
-                if (a[j + 1] < a[j]) {
-                    temp = a[j];
-                    a[j] = a[j + 1];
-                    a[j + 1] = temp;
-                    flg = true;
+        // Input array to be sorted
+        int[] numbers = {1, 5, 7, 9, 4, 0, 0, 0, 6};
+
+        bubbleSort(numbers);
+
+        printArray(numbers);
+    }
+
+    private static void bubbleSort(int[] arr) {
+        if (arr == null || arr.length <= 1) return;
+        int n = arr.length;
+
+        // Outer loop for each pass through the array
+        for (int pass = 0; pass < n - 1; pass++) {
+            // Flag to check if any swap happened in this pass
+            boolean swapped = false;
+
+            // Inner loop for comparing adjacent elements
+            for (int currentIndex = 0; currentIndex < n - 1 - pass; currentIndex++) {
+                // If current element is greater than next element, swap them
+                if (arr[currentIndex] > arr[currentIndex + 1]) {
+                    // Swap elements
+                    int temp = arr[currentIndex];
+                    arr[currentIndex] = arr[currentIndex + 1];
+                    arr[currentIndex + 1] = temp;
+                    swapped = true;
                 }
             }
-            if (!flg) {
+
+            // If no two elements were swapped in inner loop, the array is sorted
+            if (!swapped) {
                 break;
             }
         }
+    }
 
-        for (int k = 0; k < a.length; k++) {
-            System.out.println(a[k]);
+    private static void printArray(int[] numbers) {
+        // Print the sorted array
+        System.out.println("Sorted array:");
+        for (int number : numbers) {
+            System.out.print(number + " ");
         }
     }
 }
