@@ -3,95 +3,165 @@ package com.algos.sort;
 import java.util.Arrays;
 
 /**
- * <What is heap?>
- * A heap is a tree with some special properties, so value of
- * node should be greater than or equal to(less than or equal to in case of min
- * heap) children of the node and tree should be complete binary tree.
- * <p>
- * <Binary heaps>
- * Binary heaps are those heaps which can have up to 2 children.
- * <p>
- * <Understanding complete binary tree>
- * Complete binary tree is a binary tree whose leaves are at h or h-1 level where
- * h is height of the tree.
- * <p>
- * Index of left child= 2*(index of its parent)+1
- * Index of right child= 2*(index of its parent)+2
- * <p>
- * <Steps for heap sort>
- * 1. Represent array as complete binary tree.
- * Left child will be at 2*i+1 th location
- * Right child will be at 2*i+2 th location.
- * <p>
- * 2.Build a heap.
- * - All the leaf nodes already satisfy heap property, so we
- * don�t need to heapify them.
- * - Last leaf node will be present at (n-1)th location, so parent of it will
- * be at (n-1)/2 th location, hence (n-1)/2 will be location of last non leaf node.
- * - Iterate over non leaf nodes and heapify the elements.
- * <p>
- * 3. After building a heap, max element will be at root of the heap.
- * We will exchange it with (n-1)th location, so the largest element will be at
- * proper place and remove it from the heap by reducing size of n.
- * <p>
- * 4. When you exchange the largest element, it may disturb max heap property,
- * so you need to again heapify it.
- * <p>
- * 5. Once you do above steps until no elements left in heap, you will get sorted
- * array in the end.
+ * HEAP SORT - A Beginner's Guide
+ *
+ * Think of HeapSort like organizing a tournament bracket where the strongest player
+ * always rises to the top, then we remove them and repeat until everyone is ranked.
+ *
+ * === WHAT IS A HEAP? ===
+ * A heap is like a family tree where:
+ * - Parents are always stronger than their children (in a max heap)
+ * - The tree is "complete" - filled from left to right, top to bottom
+ * - We can represent this tree using a simple array!
+ *
+ * Array representation: [50, 30, 40, 10, 20, 35, 25]
+ * Tree visualization:
+ *         50
+ *       /    \
+ *     30      40
+ *    / \     / \
+ *   10  20  35  25
+ *
+ * === ARRAY TO TREE MAGIC FORMULAS ===
+ * For any element at position i:
+ * - Left child is at position: 2*i + 1
+ * - Right child is at position: 2*i + 2
+ * - Parent is at position: (i-1)/2
+ *
+ * === HOW HEAPSORT WORKS (4 SIMPLE STEPS) ===
+ *
+ * STEP 1: BUILD THE HEAP
+ * - Start with a messy array
+ * - Rearrange it so parents are bigger than children
+ * - Work backwards from the last parent to the root
+ *
+ * STEP 2: EXTRACT THE MAXIMUM
+ * - The root (position 0) is always the largest
+ * - Swap it with the last element
+ * - Now the largest is in its final sorted position!
+ *
+ * STEP 3: SHRINK THE HEAP
+ * - Reduce heap size by 1 (ignore the sorted element)
+ * - The new root might be out of place
+ *
+ * STEP 4: FIX THE HEAP (HEAPIFY)
+ * - Let the new root "sink down" to its proper position
+ * - Compare with children and swap with the larger child
+ * - Repeat until heap property is restored
+ *
+ * REPEAT STEPS 2-4 until the heap is empty!
+ *
+ * === WHY IS THIS EFFICIENT? ===
+ * - Time Complexity: O(n log n) - always consistent performance
+ * - Space Complexity: O(1) - sorts in place, no extra memory needed
+ * - Unlike QuickSort, it never has worst-case O(n²) performance
+ *
+ * === REAL WORLD ANALOGY ===
+ * Imagine you're organizing a company hierarchy:
+ * 1. Make sure every manager is more qualified than their subordinates
+ * 2. Promote the CEO (most qualified) to the "alumni" list
+ * 3. Pick a new CEO candidate and let them find their proper level
+ * 4. Repeat until everyone is properly ranked
  */
 public class HeapSort {
     public static void main(String[] args) {
-        int[] arr = {3, 4, 2, 6, 7, 1, 5};
-        heapSort(arr);
-        System.out.println(Arrays.toString(arr));
+        int[] numbers = {3, 4, 2, 6, 7, 1, 5};
+        System.out.println("Original array: " + Arrays.toString(numbers));
+
+        heapSort(numbers);
+
+        System.out.println("Sorted array:   " + Arrays.toString(numbers));
     }
 
+    /**
+     * Main HeapSort method - coordinates the entire sorting process
+     *
+     * @param array the array to be sorted
+     * @return the sorted array
+     */
+    private static int[] heapSort(int[] array) {
+        // STEP 1: Build initial max heap from unsorted array
+        buildMaxHeap(array);
 
-    private static int[] heapSort(int[] arr) {
-        buildHeap(arr);
-        // below is the trickiest part. read 3rd step
-        int sizeOfHeap = arr.length - 1;
-        for (int i = sizeOfHeap; i > 0; i--) {
-            swap(arr, 0, i);
-            sizeOfHeap--;
-            heapify(arr, 0, sizeOfHeap);
+        // STEP 2-4: Repeatedly extract maximum and rebuild heap
+        int heapSize = array.length - 1;  // Track current heap boundary
+
+        for (int lastPosition = heapSize; lastPosition > 0; lastPosition--) {
+            // STEP 2: Move largest element (root) to its final sorted position
+            swapElements(array, 0, lastPosition);
+
+            // STEP 3: Shrink heap size (exclude the sorted element)
+            heapSize--;
+
+            // STEP 4: Fix heap property - let new root find its proper place
+            bubbleDownFromRoot(array, 0, heapSize);
         }
-        return arr;
+
+        return array;
     }
 
+    /**
+     * Builds a max heap from an unsorted array
+     * Works backwards from last parent to root, ensuring heap property
+     *
+     * @param array the array to convert into a heap
+     */
+    private static void buildMaxHeap(int[] array) {
+        // Find the last parent node: parent of last element is at (n-1)/2
+        int lastParentIndex = (array.length - 1) / 2;
 
-    private static void buildHeap(int[] arr) {
-        for (int i = (arr.length - 1) / 2; i >= 0; i--) {
-            heapify(arr, i, arr.length - 1);
+        // Work backwards from last parent to root (index 0)
+        // This ensures we fix heap property from bottom to top
+        for (int parentIndex = lastParentIndex; parentIndex >= 0; parentIndex--) {
+            bubbleDownFromRoot(array, parentIndex, array.length - 1);
         }
     }
 
+    /**
+     * Maintains heap property by moving element down to correct position
+     * This is the "heapify" operation - ensures parent is larger than children
+     *
+     * @param array        the heap array
+     * @param parentIndex  starting position to bubble down from
+     * @param heapBoundary last valid index in current heap
+     */
+    private static void bubbleDownFromRoot(int[] array, int parentIndex, int heapBoundary) {
+        // Calculate children positions using heap formulas
+        int leftChildIndex = 2 * parentIndex + 1;
+        int rightChildIndex = 2 * parentIndex + 2;
+        int largestElementIndex;
 
-    private static void heapify(int[] arr, int i, int size) {
-        int left = 2 * i + 1;
-        int right = 2 * i + 2;
-        int max;
-
-        if (left <= size && arr[left] > arr[i]) {
-            max = left;
+        // Find the largest among parent and left child
+        if (leftChildIndex <= heapBoundary && array[leftChildIndex] > array[parentIndex]) {
+            largestElementIndex = leftChildIndex;
         } else {
-            max = i;
-        }
-        if (right <= size && arr[right] > arr[max]) {
-            max = right;
-        }
-        if (max != i) {
-            swap(arr, i, max);
-            heapify(arr, max, size);
+            largestElementIndex = parentIndex;
         }
 
+        // Check if right child is even larger
+        if (rightChildIndex <= heapBoundary && array[rightChildIndex] > array[largestElementIndex]) {
+            largestElementIndex = rightChildIndex;
+        }
+
+        // If parent is not the largest, swap and continue bubbling down
+        if (largestElementIndex != parentIndex) {
+            swapElements(array, parentIndex, largestElementIndex);
+
+            // Recursively fix the affected subtree
+            bubbleDownFromRoot(array, largestElementIndex, heapBoundary);
+        }
     }
 
-
-    private static void swap(int[] arr, int i, int j) {
-        int t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
+    /**
+     * Swaps two elements in the array
+     *
+     * @param array       the array containing elements to swap
+     * @param firstIndex  index of first element
+     * @param secondIndex index of second element
+     */
+    private static void swapElements(int[] array, int firstIndex, int secondIndex) {
+        int temporary = array[firstIndex];
+        array[firstIndex] = array[secondIndex];
+        array[secondIndex] = temporary;
     }
 }

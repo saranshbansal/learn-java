@@ -1,5 +1,7 @@
 package com.algos.sort;
 
+import java.util.Arrays;
+
 /**
  * A simple implementation of Bubble Sort algorithm.
  * Repeatedly steps through the list, compares adjacent elements and swaps them if they are in wrong order.
@@ -9,13 +11,11 @@ public class BubbleSort {
     public static void main(String[] args) {
         // Input array to be sorted
         int[] numbers = {1, 5, 7, 9, 4, 0, 0, 0, 6};
-        System.out.println("Original array:");
-        printArray(numbers);
+        System.out.println("Original array: " + Arrays.toString(numbers));
 
         bubbleSort(numbers);
 
-        System.out.println("\nSorted array:");
-        printArray(numbers);
+        System.out.println("\nSorted array:" + Arrays.toString(numbers));
     }
 
     private static void bubbleSort(int[] arr) {
@@ -48,11 +48,5 @@ public class BubbleSort {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
-    }
-
-    private static void printArray(int[] numbers) {
-        for (int number : numbers) {
-            System.out.print(number + " ");
-        }
     }
 }
