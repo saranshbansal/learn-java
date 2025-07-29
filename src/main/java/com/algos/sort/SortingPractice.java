@@ -1,10 +1,16 @@
 package com.algos.sort;
 
-public class Practice {
-    static int arr[] = {1, 5, 7, 9, 4, 9, 0, 30, 6};
+/**
+ * Sorting algorithms in java
+ *
+ * Created by sbansal on 2/16/17.
+ */
+public class SortingPractice {
+    static int[] arr = {1, 5, 7, 9, 4, 9, 0, 30, 6};
+
 
     public static void main(String[] args) {
-        Practice p = new Practice();
+        SortingPractice p = new SortingPractice();
         // adjacent els
         p.bbSort();
         System.out.println(' ');
