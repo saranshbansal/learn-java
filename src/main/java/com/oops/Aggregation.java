@@ -1,4 +1,4 @@
-package com.oops.learn;
+package com.oops;
 
 import lombok.Getter;
 

@@ -27,7 +27,7 @@ class BinarySearchTreeValidator {
 
     boolean canRepresentBST(int[] arr, int n) {
         // Create an empty stack
-        Stack<Integer> stack = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<>();
 
         // Initialize current root as minimum possible
         // value

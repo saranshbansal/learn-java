@@ -31,10 +31,10 @@ import java.util.Arrays;
  * - Iterate over non leaf nodes and heapify the elements.
  * <p>
  * 3. After building a heap, max element will be at root of the heap.
- * We will exchange it with (n-1)th location, so largest element will be at
+ * We will exchange it with (n-1)th location, so the largest element will be at
  * proper place and remove it from the heap by reducing size of n.
  * <p>
- * 4. When you exchange largest element, it may disturb max heap property,
+ * 4. When you exchange the largest element, it may disturb max heap property,
  * so you need to again heapify it.
  * <p>
  * 5. Once you do above steps until no elements left in heap, you will get sorted

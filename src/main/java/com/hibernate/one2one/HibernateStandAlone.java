@@ -6,26 +6,24 @@ import java.util.List;
 
 public class HibernateStandAlone {
 
-	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Student student = new Student("Sam", "Disilva", "Maths");
-		Address address = new Address("10 Silver street", "NYC", "USA");
+        Student student = new Student("Sam", "Disilva", "Maths");
+        Address address = new Address("10 Silver street", "NYC", "USA");
 
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
 
-		student.setAddress(address);
-		address.setStudent(student);
-		session.save(student);
+        student.setAddress(address);
+        address.setStudent(student);
+        session.persist(student);
 
-		List<Student> students = (List<Student>) session.createQuery("from Student ").list();
-		for (Student s : students) {
-			System.out.println("Details : " + s);
-		}
+        List<Student> students = session.createQuery("from Student ", Student.class).list();
+        for (Student s : students) {
+            System.out.println("Details : " + s);
+        }
 
-		session.getTransaction().commit();
-		session.close();
-	}
-
+        session.getTransaction().commit();
+        session.close();
+    }
 }

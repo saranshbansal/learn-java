@@ -2,11 +2,14 @@ package com.scratchpad;
 
 import org.apache.commons.lang3.StringUtils;
 
+import static org.apache.commons.lang3.Strings.CS;
+
+
 public class CIOCheck {
     public static boolean validateCIOMembership(String partnum) {
         if (StringUtils.isNotBlank(partnum)) {
-            return StringUtils.startsWith(partnum, "ITESIG")
-                    || StringUtils.startsWith(partnum, "SIG");
+            return CS.startsWith(partnum, "ITESIG")
+                    || CS.startsWith(partnum, "SIG");
         }
         return false;
     }

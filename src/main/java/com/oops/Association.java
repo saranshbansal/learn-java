@@ -1,4 +1,4 @@
-package com.oops.learn;
+package com.oops;
 
 /*
  * http://cdncontribute.geeksforgeeks.org/wp-content/uploads/Association-in-Java.png
