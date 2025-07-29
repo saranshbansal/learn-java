@@ -6,26 +6,26 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CollectionsTest {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Map<Integer, String> map = new HashMap<>();
-		map.put(5, "a");
-		map.put(2, "b");
-		map.put(3, "c");
+        Map<Integer, String> map = new HashMap<>();
+        map.put(5, "a");
+        map.put(2, "b");
+        map.put(3, "c");
 
-		java.util.List<Integer> list = new ArrayList<>();
-		list.add(1);
-		list.add(10);
-		list.add(7);
+        java.util.List<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(10);
+        list.add(7);
 
-		System.out.println(new TreeMap<>(map));
+        System.out.println(new TreeMap<>(map));
 
-		System.out.println(list);
+        System.out.println(list);
 
-		String foo = new String("bar");
-		String bar = "bar";
-		System.out.println(foo == bar);
-		System.out.println(foo.compareTo(bar));
-		System.out.println(foo.equals(bar));
-	}
+        String foo = "bar";
+        String bar = "bar";
+        System.out.println(foo == bar);
+        System.out.println(foo.compareTo(bar));
+        System.out.println(foo.equals(bar));
+    }
 }

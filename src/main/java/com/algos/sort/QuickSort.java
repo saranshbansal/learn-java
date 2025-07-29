@@ -46,87 +46,87 @@ QuickSort(l,h) {
 */
 public class QuickSort {
 
-	/**
-	 * Main method
-	 *
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		int[] arr = {14, 5, 1, 2, 15, 6, 16, 4, 9, 8, 7};
+    /**
+     * Main method
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+        int[] arr = {14, 5, 1, 2, 15, 6, 16, 4, 9, 8, 7};
 
-		new QuickSort().sort(arr, 0, arr.length - 1);
-		System.out.println("Sorted: " + Arrays.toString(arr));
-	}
+        new QuickSort().sort(arr, 0, arr.length - 1);
+        System.out.println("Sorted: " + Arrays.toString(arr));
+    }
 
-	/**
-	 * Quick sort the given array starting from index
-	 * {@code l} to {@code r}
-	 * <p>
-	 * Uses the first element in the array as the pivot
-	 *
-	 * @param array
-	 * @param low
-	 * @param high
-	 */
-	private int partition(int[] array, int low, int high) {
-		// select pivot element (left-most)
-		int pivot = array[low];
-		int i = low;
-		int j = high;
+    /**
+     * Quick sort the given array starting from index
+     * {@code l} to {@code r}
+     * <p>
+     * Uses the first element in the array as the pivot
+     *
+     * @param array
+     * @param low
+     * @param high
+     */
+    private int partition(int[] array, int low, int high) {
+        // select pivot element (left-most)
+        int pivot = array[low];
+        int i = low;
+        int j = high;
 
-		// partition and shuffle around pivot
-		while (i < j) {
-			// move right to avoid pivot element
-			i++;
-			// scan left: find elements smaller than pivot
-			while (i <= high && array[i] < pivot) {
-				i++;
-			}
-			// scan right: find elements greater than pivot
-			while (j >= low && array[j] > pivot) {
-				j--;
-			}
-			if (i <= high && i < j) {
-				// swap around pivot
-				swap(array, i, j);
-			}
-		}
-		// last step to put pivot (or low) in correct place
-		swap(array, low, j);
-		return j;
-	}
+        // partition and shuffle around pivot
+        while (i < j) {
+            // move right to avoid pivot element
+            i++;
+            // scan left: find elements smaller than pivot
+            while (i <= high && array[i] < pivot) {
+                i++;
+            }
+            // scan right: find elements greater than pivot
+            while (j >= low && array[j] > pivot) {
+                j--;
+            }
+            if (i <= high && i < j) {
+                // swap around pivot
+                swap(array, i, j);
+            }
+        }
+        // last step to put pivot (or low) in correct place
+        swap(array, low, j);
+        return j;
+    }
 
-	/**
-	 * Quick sort the given array in ascending order
-	 *
-	 * @param array
-	 */
-	public void sort(int[] arr, int low, int high) {
-		if (low < high) {
+    /**
+     * Quick sort the given array in ascending order
+     *
+     * @param array
+     */
+    public void sort(int[] arr, int low, int high) {
+        if (low < high) {
             /* pi is partitioning index, arr[pi] is
               now at right place */
-			int pi = partition(arr, low, high);
+            int pi = partition(arr, low, high);
 
-			// Recursively sort elements before partition and after partition
-			sort(arr, low, pi - 1);
-			sort(arr, pi + 1, high);
-		}
-	}
+            // Recursively sort elements before partition and after partition
+            sort(arr, low, pi - 1);
+            sort(arr, pi + 1, high);
+        }
+    }
 
-	/**
-	 * Swap elements at indexes {@code i} and {@code j}
-	 * in the give array
-	 *
-	 * @param array
-	 * @param i
-	 * @param j
-	 */
-	private void swap(int[] array, int i, int j) {
-		if (i >= 0 && j >= 0 && i < array.length && j < array.length) {
-			int tmp = array[i];
-			array[i] = array[j];
-			array[j] = tmp;
-		}
-	}
+    /**
+     * Swap elements at indexes {@code i} and {@code j}
+     * in the give array
+     *
+     * @param array
+     * @param i
+     * @param j
+     */
+    private void swap(int[] array, int i, int j) {
+        if (i >= 0 && j >= 0 && i < array.length && j < array.length) {
+            int tmp = array[i];
+            array[i] = array[j];
+            array[j] = tmp;
+        }
+    }
 
 }

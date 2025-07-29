@@ -8,10 +8,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ListNode {
-	int val;
-	ListNode next;
+    int val;
+    ListNode next;
 
-	public ListNode(int val) {
-		this.val = val;
-	}
+    public ListNode(int val) {
+        this.val = val;
+    }
 }

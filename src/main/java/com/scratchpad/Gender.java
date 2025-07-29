@@ -1,16 +1,16 @@
 package com.scratchpad;
 
 public enum Gender {
-	M("M"), F("F");
-	private String value;
+    M("M"), F("F");
+    private final String value;
 
 
-	private Gender(String value) {
-		this.value = value;
-	}
+    Gender(String value) {
+        this.value = value;
+    }
 
 
-	public String getValue() {
-		return value;
-	}
+    public String getValue() {
+        return value;
+    }
 }

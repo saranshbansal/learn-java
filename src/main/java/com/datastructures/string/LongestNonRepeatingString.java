@@ -16,22 +16,22 @@ import java.util.Set;
  * The maximum length of the non-repeating substring is then calculated by comparing the right pointer with the left pointer.
  */
 public class LongestNonRepeatingString {
-	public static void main(String[] args) {
-		LongestNonRepeatingString l = new LongestNonRepeatingString();
-		System.out.println(l.lengthOfLongestSubstring("abcabcbb"));
-	}
+    public static void main(String[] args) {
+        LongestNonRepeatingString l = new LongestNonRepeatingString();
+        System.out.println(l.lengthOfLongestSubstring("abcabcbb"));
+    }
 
-	public int lengthOfLongestSubstring(String s) {
-		Set<Character> set = new HashSet<>();
-		int max = 0;
-		int left = 0;
-		for (int right = 0; right < s.length(); right++) {
-			while (!set.add(s.charAt(right))) {
-				set.remove(s.charAt(left));
-				left++;
-			}
-			max = Math.max(max, right - left + 1);
-		}
-		return max;
-	}
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> set = new HashSet<>();
+        int max = 0;
+        int left = 0;
+        for (int right = 0; right < s.length(); right++) {
+            while (!set.add(s.charAt(right))) {
+                set.remove(s.charAt(left));
+                left++;
+            }
+            max = Math.max(max, right - left + 1);
+        }
+        return max;
+    }
 }

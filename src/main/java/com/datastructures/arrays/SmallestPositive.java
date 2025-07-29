@@ -32,25 +32,25 @@ import java.util.Arrays;
  */
 public class SmallestPositive {
 
-	public static void main(String[] args) {
-		int[] arr = {-1, -3};
-		Arrays.sort(arr);
-		System.out.println(findSmallestPositive(arr));
-	}
+    public static void main(String[] args) {
+        int[] arr = {-1, -3};
+        Arrays.sort(arr);
+        System.out.println(findSmallestPositive(arr));
+    }
 
 
-	private static int findSmallestPositive(int[] arr) {
-		int n = arr.length;
-		for (int i = 0; i < n; i++) {
-			// No next smallest missing element found within array. Return the next highest integer.
-			if (i == n - 1) {
-				return (arr[n - 1] + 1 > 0 ? arr[n - 1] + 1 : 1);
-			}
-			// Otherwise, continue.
-			if ((i < n - 1) && (arr[i + 1] - arr[i] > 1) && (arr[i] + 1 > 0)) {
-				return arr[i] + 1;
-			}
-		}
-		return -1;
-	}
+    private static int findSmallestPositive(int[] arr) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            // No next smallest missing element found within array. Return the next highest integer.
+            if (i == n - 1) {
+                return (arr[n - 1] + 1 > 0 ? arr[n - 1] + 1 : 1);
+            }
+            // Otherwise, continue.
+            if ((i < n - 1) && (arr[i + 1] - arr[i] > 1) && (arr[i] + 1 > 0)) {
+                return arr[i] + 1;
+            }
+        }
+        return -1;
+    }
 }

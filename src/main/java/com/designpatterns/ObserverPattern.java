@@ -37,19 +37,19 @@ import java.util.List;
  */
 interface Subject {
 
-	// methods to register and unregister observers
-	public void register(Observer obj);
+    // methods to register and unregister observers
+    void register(Observer obj);
 
 
-	public void unregister(Observer obj);
+    void unregister(Observer obj);
 
 
-	// method to notify observers of change
-	public void notifyObservers();
+    // method to notify observers of change
+    void notifyObservers();
 
 
-	// method to get updates from subject
-	public Object getUpdates();
+    // method to get updates from subject
+    Object getUpdates();
 
 }
 
@@ -61,12 +61,12 @@ interface Subject {
  */
 interface Observer {
 
-	// method to check if any update is made on the subject
-	public void observeAndUpdate();
+    // method to check if any update is made on the subject
+    void observeAndUpdate();
 
 
-	// attach with subject to observe
-	public void setSubject(Subject sub);
+    // attach with subject to observe
+    void setSubject(Subject sub);
 }
 
 
@@ -88,72 +88,72 @@ interface Observer {
  */
 class MyPersonalFeed implements Subject {
 
-	private final Object MUTEX = new Object();
-	private List<Observer> observers;
-	private String message;
-	private boolean changed;
+    private final Object MUTEX = new Object();
+    private final List<Observer> observers;
+    private String message;
+    private boolean changed;
 
 
-	public MyPersonalFeed() {
-		this.observers = new ArrayList<>();
-	}
+    public MyPersonalFeed() {
+        this.observers = new ArrayList<>();
+    }
 
 
-	@Override
-	public void register(Observer obj) {
-		if (obj == null)
-			throw new NullPointerException("Null Observer");
-		synchronized (MUTEX) {
-			if (!observers.contains(obj))
-				observers.add(obj);
-		}
-	}
+    @Override
+    public void register(Observer obj) {
+        if (obj == null)
+            throw new NullPointerException("Null Observer");
+        synchronized (MUTEX) {
+            if (!observers.contains(obj))
+                observers.add(obj);
+        }
+    }
 
 
-	/*
-	 * It has a synchronized block. It is because you cannot add elements to
-	 * arraylist and also remove elements from it at the same time. It will give a
-	 * java.util.ConcurrentModificationException.
-	 */
-	@Override
-	public void unregister(Observer obj) {
-		synchronized (MUTEX) {
-			observers.remove(obj);
-		}
-	}
+    /*
+     * It has a synchronized block. It is because you cannot add elements to
+     * arraylist and also remove elements from it at the same time. It will give a
+     * java.util.ConcurrentModificationException.
+     */
+    @Override
+    public void unregister(Observer obj) {
+        synchronized (MUTEX) {
+            observers.remove(obj);
+        }
+    }
 
 
-	@Override
-	public void notifyObservers() {
-		List<Observer> observersLocal = null;
-		// synchronization is used to make sure any observer registered after message is
-		// received is not notified
-		synchronized (MUTEX) {
-			if (!changed)
-				return;
-			observersLocal = new ArrayList<>(this.observers);
-			this.changed = false;
-		}
-		for (Observer obj : observersLocal) {
-			obj.observeAndUpdate();
-		}
+    @Override
+    public void notifyObservers() {
+        List<Observer> observersLocal = null;
+        // synchronization is used to make sure any observer registered after message is
+        // received is not notified
+        synchronized (MUTEX) {
+            if (!changed)
+                return;
+            observersLocal = new ArrayList<>(this.observers);
+            this.changed = false;
+        }
+        for (Observer obj : observersLocal) {
+            obj.observeAndUpdate();
+        }
 
-	}
-
-
-	@Override
-	public Object getUpdates() {
-		return this.message;
-	}
+    }
 
 
-	// method to post message to the home feed
-	public void addNewPost(String msg) {
-		System.out.println("New post added to feed:" + msg);
-		this.message = msg;
-		this.changed = true;
-		notifyObservers();
-	}
+    @Override
+    public Object getUpdates() {
+        return this.message;
+    }
+
+
+    // method to post message to the home feed
+    public void addNewPost(String msg) {
+        System.out.println("New post added to feed:" + msg);
+        this.message = msg;
+        this.changed = true;
+        notifyObservers();
+    }
 
 }
 
@@ -167,29 +167,29 @@ class MyPersonalFeed implements Subject {
  */
 class MyFeedObserver implements Observer {
 
-	private String name;
-	private Subject homeFeed;
+    private final String name;
+    private Subject homeFeed;
 
 
-	public MyFeedObserver(String nm) {
-		this.name = nm;
-	}
+    public MyFeedObserver(String nm) {
+        this.name = nm;
+    }
 
 
-	@Override
-	public void observeAndUpdate() {
-		String msg = (String) homeFeed.getUpdates();
-		if (msg == null) {
-			System.out.println(name + ":: No new post");
-		} else
-			System.out.println(name + ":: Consuming post::" + msg);
-	}
+    @Override
+    public void observeAndUpdate() {
+        String msg = (String) homeFeed.getUpdates();
+        if (msg == null) {
+            System.out.println(name + ":: No new post");
+        } else
+            System.out.println(name + ":: Consuming post::" + msg);
+    }
 
 
-	@Override
-	public void setSubject(Subject sub) {
-		this.homeFeed = sub;
-	}
+    @Override
+    public void setSubject(Subject sub) {
+        this.homeFeed = sub;
+    }
 
 }
 
@@ -200,30 +200,30 @@ class MyFeedObserver implements Observer {
  */
 public class ObserverPattern {
 
-	public static void main(String[] args) {
-		// create your home feed
-		MyPersonalFeed feed = new MyPersonalFeed();
+    public static void main(String[] args) {
+        // create your home feed
+        MyPersonalFeed feed = new MyPersonalFeed();
 
-		// create observers
-		Observer obj1 = new MyFeedObserver("Observer1");
-		Observer obj2 = new MyFeedObserver("Observer2");
-		Observer obj3 = new MyFeedObserver("Observer3");
+        // create observers
+        Observer obj1 = new MyFeedObserver("Observer1");
+        Observer obj2 = new MyFeedObserver("Observer2");
+        Observer obj3 = new MyFeedObserver("Observer3");
 
-		// register observers to the subject
-		feed.register(obj1);
-		feed.register(obj2);
-		feed.register(obj3);
+        // register observers to the subject
+        feed.register(obj1);
+        feed.register(obj2);
+        feed.register(obj3);
 
-		// attach observer to subject
-		obj1.setSubject(feed);
-		obj2.setSubject(feed);
-		obj3.setSubject(feed);
+        // attach observer to subject
+        obj1.setSubject(feed);
+        obj2.setSubject(feed);
+        obj3.setSubject(feed);
 
-		// check if any update is available
-		obj1.observeAndUpdate();
+        // check if any update is available
+        obj1.observeAndUpdate();
 
-		// now send a new post to home feed
-		feed.addNewPost("New Post - " + LocalDateTime.now());
-	}
+        // now send a new post to home feed
+        feed.addNewPost("New Post - " + LocalDateTime.now());
+    }
 
 }

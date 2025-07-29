@@ -11,6 +11,7 @@ public final class LoggerUtil {
 
     /**
      * Returns a logger for the specified class
+     *
      * @param clazz the class for which the logger is created
      * @return the logger instance
      */
@@ -20,6 +21,7 @@ public final class LoggerUtil {
 
     /**
      * Returns a logger with the specified name
+     *
      * @param name the name of the logger
      * @return the logger instance
      */

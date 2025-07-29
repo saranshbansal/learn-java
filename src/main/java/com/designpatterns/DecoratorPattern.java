@@ -1,13 +1,13 @@
 package com.designpatterns;
 
 interface Troll {
-	void attack();
+    void attack();
 
 
-	int getAttackPower();
+    int getAttackPower();
 
 
-	void fleeBattle();
+    void fleeBattle();
 }
 
 /**
@@ -37,66 +37,66 @@ interface Troll {
  * additional information.
  */
 public class DecoratorPattern {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		// simple troll
-		Troll troll = new SimpleTroll();
-		troll.attack(); // The troll tries to grab you!
-		troll.fleeBattle(); // The troll shrieks in horror and runs away!
+        // simple troll
+        Troll troll = new SimpleTroll();
+        troll.attack(); // The troll tries to grab you!
+        troll.fleeBattle(); // The troll shrieks in horror and runs away!
 
-		// change the behavior of the simple troll by adding a decorator
-		troll = new ClubbedTroll(troll);
-		troll.attack(); // The troll tries to grab you! The troll swings at you with a club!
-		troll.fleeBattle(); // The troll shrieks in horror and runs away!
-	}
+        // change the behavior of the simple troll by adding a decorator
+        troll = new ClubbedTroll(troll);
+        troll.attack(); // The troll tries to grab you! The troll swings at you with a club!
+        troll.fleeBattle(); // The troll shrieks in horror and runs away!
+    }
 }
 
 class SimpleTroll implements Troll {
 
-	@Override
-	public void attack() {
-		System.out.println("The troll tries to grab you!");
-	}
+    @Override
+    public void attack() {
+        System.out.println("The troll tries to grab you!");
+    }
 
 
-	@Override
-	public int getAttackPower() {
-		return 10;
-	}
+    @Override
+    public int getAttackPower() {
+        return 10;
+    }
 
 
-	@Override
-	public void fleeBattle() {
-		System.out.println("The troll shrieks in horror and runs away!");
-	}
+    @Override
+    public void fleeBattle() {
+        System.out.println("The troll shrieks in horror and runs away!");
+    }
 }
 
 
 class ClubbedTroll implements Troll {
 
-	private Troll decorated;
+    private final Troll decorated;
 
 
-	public ClubbedTroll(Troll decorated) {
-		this.decorated = decorated;
-	}
+    public ClubbedTroll(Troll decorated) {
+        this.decorated = decorated;
+    }
 
 
-	@Override
-	public void attack() {
-		decorated.attack();
-		System.out.println("The troll swings at you with a club!");
-	}
+    @Override
+    public void attack() {
+        decorated.attack();
+        System.out.println("The troll swings at you with a club!");
+    }
 
 
-	@Override
-	public int getAttackPower() {
-		return decorated.getAttackPower() + 10;
-	}
+    @Override
+    public int getAttackPower() {
+        return decorated.getAttackPower() + 10;
+    }
 
 
-	@Override
-	public void fleeBattle() {
-		decorated.fleeBattle();
-	}
+    @Override
+    public void fleeBattle() {
+        decorated.fleeBattle();
+    }
 }

@@ -9,9 +9,12 @@ public class BubbleSort {
     public static void main(String[] args) {
         // Input array to be sorted
         int[] numbers = {1, 5, 7, 9, 4, 0, 0, 0, 6};
+        System.out.println("Original array:");
+        printArray(numbers);
 
         bubbleSort(numbers);
 
+        System.out.println("\nSorted array:");
         printArray(numbers);
     }
 
@@ -29,9 +32,7 @@ public class BubbleSort {
                 // If current element is greater than next element, swap them
                 if (arr[currentIndex] > arr[currentIndex + 1]) {
                     // Swap elements
-                    int temp = arr[currentIndex];
-                    arr[currentIndex] = arr[currentIndex + 1];
-                    arr[currentIndex + 1] = temp;
+                    swap(arr, currentIndex, currentIndex + 1);
                     swapped = true;
                 }
             }
@@ -43,9 +44,13 @@ public class BubbleSort {
         }
     }
 
+    private static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
     private static void printArray(int[] numbers) {
-        // Print the sorted array
-        System.out.println("Sorted array:");
         for (int number : numbers) {
             System.out.print(number + " ");
         }

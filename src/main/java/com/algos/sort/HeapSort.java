@@ -41,57 +41,57 @@ import java.util.Arrays;
  * array in the end.
  */
 public class HeapSort {
-	public static void main(String[] args) {
-		int[] arr = {3, 4, 2, 6, 7, 1, 5};
-		heapSort(arr);
-		System.out.println(Arrays.toString(arr));
-	}
+    public static void main(String[] args) {
+        int[] arr = {3, 4, 2, 6, 7, 1, 5};
+        heapSort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
 
 
-	private static int[] heapSort(int[] arr) {
-		buildHeap(arr);
-		// below is the trickiest part. read 3rd step
-		int sizeOfHeap = arr.length - 1;
-		for (int i = sizeOfHeap; i > 0; i--) {
-			swap(arr, 0, i);
-			sizeOfHeap--;
-			heapify(arr, 0, sizeOfHeap);
-		}
-		return arr;
-	}
+    private static int[] heapSort(int[] arr) {
+        buildHeap(arr);
+        // below is the trickiest part. read 3rd step
+        int sizeOfHeap = arr.length - 1;
+        for (int i = sizeOfHeap; i > 0; i--) {
+            swap(arr, 0, i);
+            sizeOfHeap--;
+            heapify(arr, 0, sizeOfHeap);
+        }
+        return arr;
+    }
 
 
-	private static void buildHeap(int[] arr) {
-		for (int i = (arr.length - 1) / 2; i >= 0; i--) {
-			heapify(arr, i, arr.length - 1);
-		}
-	}
+    private static void buildHeap(int[] arr) {
+        for (int i = (arr.length - 1) / 2; i >= 0; i--) {
+            heapify(arr, i, arr.length - 1);
+        }
+    }
 
 
-	private static void heapify(int[] arr, int i, int size) {
-		int left = 2 * i + 1;
-		int right = 2 * i + 2;
-		int max;
+    private static void heapify(int[] arr, int i, int size) {
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+        int max;
 
-		if (left <= size && arr[left] > arr[i]) {
-			max = left;
-		} else {
-			max = i;
-		}
-		if (right <= size && arr[right] > arr[max]) {
-			max = right;
-		}
-		if (max != i) {
-			swap(arr, i, max);
-			heapify(arr, max, size);
-		}
+        if (left <= size && arr[left] > arr[i]) {
+            max = left;
+        } else {
+            max = i;
+        }
+        if (right <= size && arr[right] > arr[max]) {
+            max = right;
+        }
+        if (max != i) {
+            swap(arr, i, max);
+            heapify(arr, max, size);
+        }
 
-	}
+    }
 
 
-	private static void swap(int[] arr, int i, int j) {
-		int t = arr[i];
-		arr[i] = arr[j];
-		arr[j] = t;
-	}
+    private static void swap(int[] arr, int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
 }
