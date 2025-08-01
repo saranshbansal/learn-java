@@ -1,6 +1,6 @@
-# Java Concepts Cookbook
+# DSA Concepts Cookbook (in Java)
 
-Welcome to **Java Concepts Cookbook**!  
+Welcome to **DSA Concepts Cookbook (in Java)**!  
 This repository is a curated collection of Java code samples, algorithms, design patterns, and practical examples. It's designed for anyone looking to deepen their understanding of Java, whether you're a beginner or an experienced developer.
 
 ## 🚀 Features
@@ -17,7 +17,7 @@ Also, check out the [`docs/`](docs) folder in root for more easy to understand e
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/your-username/learn-java.git
+   git clone https://github.com/your-username/dsa-cookbook-java.git
    
    cd learn-java
    ```
