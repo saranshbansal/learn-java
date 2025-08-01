@@ -7,6 +7,8 @@ import java.util.Arrays;
  *
  * Think of HeapSort like organizing a tournament bracket where the strongest player
  * always rises to the top, then we remove them and repeat until everyone is ranked.
+ * The "tournament bracket" is the heap structure, "crowning champions" is extracting the maximum,
+ * and "finding your level" is the heapify operation. It's a systematic way to rank everyone from strongest to weakest!
  *
  * === WHAT IS A HEAP? ===
  * A heap is like a family tree where:
@@ -16,17 +18,17 @@ import java.util.Arrays;
  *
  * Array representation: [50, 30, 40, 10, 20, 35, 25]
  * Tree visualization:
- *         50
+ *         50 (index 0)
  *       /    \
- *     30      40
+ *     30(1)      40(2)
  *    / \     / \
- *   10  20  35  25
+ *   10(3)  20(4)  35(5)  25(6)
  *
  * === ARRAY TO TREE MAGIC FORMULAS ===
  * For any element at position i:
  * - Left child is at position: 2*i + 1
  * - Right child is at position: 2*i + 2
- * - Parent is at position: (i-1)/2
+ * - Parent is at position: (i-1)/2 (floor division)
  *
  * === HOW HEAPSORT WORKS (4 SIMPLE STEPS) ===
  *
@@ -77,9 +79,8 @@ public class HeapSort {
      * Main HeapSort method - coordinates the entire sorting process
      *
      * @param array the array to be sorted
-     * @return the sorted array
      */
-    private static int[] heapSort(int[] array) {
+    private static void heapSort(int[] array) {
         // STEP 1: Build initial max heap from unsorted array
         buildMaxHeap(array);
 
@@ -96,8 +97,6 @@ public class HeapSort {
             // STEP 4: Fix heap property - let new root find its proper place
             bubbleDownFromRoot(array, 0, heapSize);
         }
-
-        return array;
     }
 
     /**
