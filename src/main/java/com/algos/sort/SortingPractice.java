@@ -1,8 +1,10 @@
 package com.algos.sort;
 
+import java.util.Arrays;
+
 /**
  * Sorting algorithms in java
- *
+ * <p>
  * Created by sbansal on 2/16/17.
  */
 public class SortingPractice {
@@ -11,25 +13,39 @@ public class SortingPractice {
 
     public static void main(String[] args) {
         SortingPractice p = new SortingPractice();
-        // adjacent els
-        p.bbSort();
+        System.out.println("Original array: " + Arrays.toString(arr));
+        System.out.println();
+
+        // bb sort - adjacent els
+        int[] arr1 = arr.clone();
+        p.bbSort(arr1);
         System.out.println(' ');
 
-        // shifting
-        p.insSort();
+        // ins sort - shifting
+        int[] arr2 = arr.clone();
+        p.insSort(arr2);
         System.out.println(' ');
 
-        // true minimum
-        p.selSort();
+        // selection sort - true minimum
+        int[] arr3 = arr.clone();
+        p.selSort(arr3);
         System.out.println(' ');
 
-        // pi and recursive sort
-        p.quickSort(arr, 0, arr.length - 1);
+        // quick sort - pi and recursive sort
+        int[] arr4 = arr.clone();
+        p.quickSort(arr4, 0, arr4.length - 1);
+        System.out.print("QUICK SORT:" + Arrays.toString(arr4));
+        System.out.println(' ');
 
+        // heap sort - build max heap
+        int[] arr5 = arr.clone();
+        p.heapSort(arr5);
+        System.out.println(' ');
     }
 
+
     // Trick: Compare adjacent elements
-    void bbSort() {
+    void bbSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             boolean flg = false;
             for (int j = 0; j < arr.length - i - 1; j++) {
@@ -47,55 +63,48 @@ public class SortingPractice {
         }
 
         // display
-        for (int k = 0; k < arr.length; k++) {
-            System.out.print(arr[k]);
-        }
+        System.out.print("BB SORT:" + Arrays.toString(arr));
     }
 
     // compare to all elements left to current element
-    void insSort() {
+    void insSort(int[] arr) {
         for (int i = 1; i < arr.length; i++) {
+            int currentElement = arr[i];
             int j = i - 1;
-            while (j > 0 && arr[i] < arr[j]) {
+            while (j >= 0 && currentElement < arr[j]) {
                 arr[j + 1] = arr[j]; // shift all els
                 j--;
             }
 
-            arr[j + 1] = arr[i]; // assign el to correct index
-
+            arr[j + 1] = currentElement; // assign el to correct index
         }
 
         // display
-        for (int k = 0; k < arr.length; k++) {
-            System.out.print(arr[k]);
-        }
+        System.out.print("INSERTION SORT:" + Arrays.toString(arr));
     }
 
     // compare to all elements right to current element
-    void selSort() {
+    void selSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
-            int temp_min_idx = i;
-            int true_min_idx = i;
+            int trueMinIdx = i;
 
             for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j] < arr[i]) {
-                    true_min_idx = j;
+                if (arr[j] < arr[trueMinIdx]) {
+                    trueMinIdx = j;
                 }
             }
 
-            int temp = arr[temp_min_idx];
-            arr[temp_min_idx] = arr[true_min_idx];
-            arr[true_min_idx] = temp;
+            int temp = arr[i];
+            arr[i] = arr[trueMinIdx];
+            arr[trueMinIdx] = temp;
         }
 
         // display
-        for (int k = 0; k < arr.length; k++) {
-            System.out.print(arr[k]);
-        }
+        System.out.print("SELECTION SORT:" + Arrays.toString(arr));
     }
 
     void quickSort(int[] arr, int begin, int end) {
-        while (begin < end) {
+        if (begin < end) {
             int pi = partition(arr, begin, end);
 
             quickSort(arr, begin, pi - 1);
@@ -107,7 +116,7 @@ public class SortingPractice {
         int pivot = arr[end];
         int i = begin - 1;
 
-        for (int j = 0; j < arr.length; j++) {
+        for (int j = begin; j < end; j++) {
             if (arr[j] < pivot) {
                 i++;
 
@@ -122,5 +131,55 @@ public class SortingPractice {
         arr[end] = temp;
 
         return i + 1;
+    }
+
+    private void heapSort(int[] arr) {
+        buildMaximumHeap(arr);
+
+        int heapSize = arr.length - 1;
+        for (int lastPosition = heapSize; lastPosition > 0; lastPosition--) {
+            int temp = arr[lastPosition];
+            arr[lastPosition] = arr[0];
+            arr[0] = temp;
+
+            heapSize--;
+
+            bubbleDown(arr, 0, heapSize);
+        }
+
+        // display
+        System.out.print("HEAP SORT:" + Arrays.toString(arr));
+    }
+
+    private void buildMaximumHeap(int[] arr) {
+        int lastParent = (arr.length - 1) / 2;
+
+        for (int i = lastParent; i >= 0; i--) {
+            bubbleDown(arr, i, arr.length - 1);
+        }
+    }
+
+    private void bubbleDown(int[] arr, int parentIndex, int heapBoundary) {
+        int leftChildIndex = 2 * parentIndex + 1;
+        int rightChildIndex = 2 * parentIndex + 2;
+        int largestElementIndex;
+
+        if (leftChildIndex <= heapBoundary && arr[leftChildIndex] > arr[parentIndex]) {
+            largestElementIndex = leftChildIndex;
+        } else {
+            largestElementIndex = parentIndex;
+        }
+
+        if (rightChildIndex <= heapBoundary && arr[rightChildIndex] > arr[largestElementIndex]) {
+            largestElementIndex = rightChildIndex;
+        }
+
+        if (largestElementIndex != parentIndex) {
+            int temp = arr[parentIndex];
+            arr[parentIndex] = arr[largestElementIndex];
+            arr[largestElementIndex] = temp;
+
+            bubbleDown(arr, largestElementIndex, heapBoundary);
+        }
     }
 }

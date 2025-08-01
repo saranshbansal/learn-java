@@ -67,7 +67,7 @@ import java.util.Arrays;
  */
 public class HeapSort {
     public static void main(String[] args) {
-        int[] numbers = {3, 4, 2, 6, 7, 1, 5};
+        int[] numbers = {50, 30, 40, 10, 20, 35, 25};
         System.out.println("Original array: " + Arrays.toString(numbers));
 
         heapSort(numbers);
