@@ -88,7 +88,7 @@ public class HeapSort {
         int heapSize = array.length - 1;  // Track current heap boundary
 
         for (int lastPosition = heapSize; lastPosition > 0; lastPosition--) {
-            // STEP 2: Move largest element (root) to its final sorted position
+            // STEP 2: Move the largest element (root) to its final sorted position
             swapElements(array, 0, lastPosition);
 
             // STEP 3: Shrink heap size (exclude the sorted element)
